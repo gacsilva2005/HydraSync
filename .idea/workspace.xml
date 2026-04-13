@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ef55a9-f571-4eb3-872f-2c7f81d3ef3d" name="Changes" comment="" />
+    <list default="true" id="39ef55a9-f571-4eb3-872f-2c7f81d3ef3d" name="Changes" comment="Feature: Implementando primeiras dependências para conexão com banco de dados SQL.&#10;&#10;- Dependências do arquivo &quot;pom.xml&quot;&#10;- Propriedades de aplicação, sem conexão plena e com possibilidade para criação de um dataBase.">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SC-HydraSense/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SC-HydraSense/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SC-HydraSense/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SC-HydraSense/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,21 +23,25 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "gacsilva2005"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;gacsilva2005&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/gacsilva2005/HydraSync.git",
-    "accountId": "8f71f723-688e-4be2-b95e-6e50b3004bbd"
+    "url": "https://github.com/gacsilva2005/SC_HydraSense.git",
+    "accountId": "ec4dc13b-f3dc-45c5-a674-d11a1be37f2d"
   }
 }]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
 }]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="3Bg0chTFvkuAvQyg7XHCfkwWZWL" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -39,12 +51,21 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/dependencias-springboot",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.ScHydraSenseApplication.executor": "Run",
+    "git-widget-placeholder": "feature/database-configure",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/gacsilva/IdeaProjects/HydraSync",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -52,10 +73,20 @@
       <recent name="C:\Users\gacsilva\IdeaProjects\HydraSync" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="ScHydraSenseApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="SC-HydraSense" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.hydrasense.schydrasense.ScHydraSenseApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28238.7" />
       </set>
     </attachedChunks>
   </component>
@@ -66,8 +97,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1774895487493</updated>
+      <workItem from="1776077839950" duration="2086000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Feature: Implementando primeiras dependências para conexão com banco de dados SQL.&#10;&#10;- Dependências do arquivo &quot;pom.xml&quot;&#10;- Propriedades de aplicação, sem conexão plena e com possibilidade para criação de um dataBase." />
+    <option name="LAST_COMMIT_MESSAGE" value="Feature: Implementando primeiras dependências para conexão com banco de dados SQL.&#10;&#10;- Dependências do arquivo &quot;pom.xml&quot;&#10;- Propriedades de aplicação, sem conexão plena e com possibilidade para criação de um dataBase." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
