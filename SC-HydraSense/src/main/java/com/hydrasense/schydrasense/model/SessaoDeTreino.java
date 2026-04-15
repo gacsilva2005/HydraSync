@@ -1,5 +1,6 @@
 package com.hydrasense.schydrasense.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,6 +36,12 @@ public class SessaoDeTreino {
     @OneToOne(mappedBy = "sessaoDeTreino", cascade = CascadeType.ALL)
     private RegistroDeSintoma registroDeSintoma;
 
+    // Relação M:1 com Atleta
+    @ManyToOne
+    @JoinColumn(name = "atleta_id")
+    @JsonIgnore
+    private Atleta atleta;
+
     // Construtor padrão JPA
     public SessaoDeTreino() {}
 
@@ -53,5 +60,9 @@ public class SessaoDeTreino {
             return java.time.Duration.between(dataHoraInicio, dataHoraFim).toMinutes();
         }
         return 0;
+    }
+
+    public void setAtleta(Atleta atleta) {
+        this.atleta = atleta;
     }
 }

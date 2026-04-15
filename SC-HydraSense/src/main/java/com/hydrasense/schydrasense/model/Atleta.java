@@ -2,11 +2,19 @@ package com.hydrasense.schydrasense.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "Atleta")
 public class Atleta {
 
+    // Getters e Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,6 +31,17 @@ public class Atleta {
     @Column(nullable = false)
     private Float pesoAtual;
 
+    //Relação 1:M com Profissional
+    @ManyToOne
+    @JoinColumn(name = "profissional_id")
+    @JsonIgnore
+    private Profissional profissional;
+
+    //Relação 1 com muitos SessaoDeTreino
+    @JsonIgnore
+    @OneToMany(mappedBy = "atleta", cascade = CascadeType.ALL)
+    private List<SessaoDeTreino> sessoes = new ArrayList<>();
+
     // Construtor padrão JPA
     public Atleta() {}
 
@@ -34,44 +53,12 @@ public class Atleta {
         this.pesoAtual = pesoAtual;
     }
 
-    // Getters e Setters
-    public Long getId() {
-        return id;
+    public void adicionarSessao(SessaoDeTreino sessao) {
+        sessoes.add(sessao);
+        sessao.setAtleta(this);
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getModalidadePrincipal() {
-        return modalidadePrincipal;
-    }
-
-    public void setModalidadePrincipal(String modalidadePrincipal) {
-        this.modalidadePrincipal = modalidadePrincipal;
-    }
-
-    public Float getPesoAtual() {
-        return pesoAtual;
-    }
-
-    public void setPesoAtual(Float pesoAtual) {
-        this.pesoAtual = pesoAtual;
+    public void setProfissional(Profissional profissional) {
+        this.profissional = profissional;
     }
 }
