@@ -25,9 +25,8 @@ public class Profissional {
     @Setter
     private String especialidade;
 
-    // Relacionamento com Atleta
-    @Setter
-    @OneToMany
+    // Relacionamento 1:M com Atleta
+    @OneToMany(mappedBy = "profissional", cascade = CascadeType.ALL)
     private List<Atleta> atletas = new ArrayList<>();
 
     // Construtor padrão JPA
@@ -35,6 +34,7 @@ public class Profissional {
 
     // Métodos
     public void vincularAtleta(Atleta atleta) {
-        this.atletas.add(atleta);
+        atletas.add(atleta);
+        atleta.setProfissional(this);
     }
 }
