@@ -26,6 +26,11 @@ public class SessaoDeTreino {
 
     private String intensidadePercebida;
 
+    // Relação 1:1 Registro de Sintoma
+    @Setter
+    @OneToOne(mappedBy = "sessaoDeTreino", cascade = CascadeType.ALL)
+    private RegistroDeSintoma registroDeSintoma;
+
     // Construtor padrão JPA
     public SessaoDeTreino() {}
 
