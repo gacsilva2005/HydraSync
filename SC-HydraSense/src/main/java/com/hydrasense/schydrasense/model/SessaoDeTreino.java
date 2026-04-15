@@ -18,12 +18,16 @@ public class SessaoDeTreino {
     @Setter
     private LocalDateTime dataHoraInicio;
 
+    @Setter
     private LocalDateTime dataHoraFim;
 
+    @Setter
     private Float distanciaPercorrida;
 
+    @Setter
     private String modalidade;
 
+    @Setter
     private String intensidadePercebida;
 
     // Relação 1:1 Registro de Sintoma
@@ -33,22 +37,6 @@ public class SessaoDeTreino {
 
     // Construtor padrão JPA
     public SessaoDeTreino() {}
-
-    public void setDataHoraFim(LocalDateTime dataHoraFim) {
-        this.dataHoraFim = dataHoraFim;
-    }
-
-    public void setDistanciaPercorrida(Float distanciaPercorrida) {
-        this.distanciaPercorrida = distanciaPercorrida;
-    }
-
-    public void setModalidade(String modalidade) {
-        this.modalidade = modalidade;
-    }
-
-    public void setIntensidadePercebida(String intensidadePercebida) {
-        this.intensidadePercebida = intensidadePercebida;
-    }
 
     //Métodos da Classe
 
