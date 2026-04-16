@@ -37,6 +37,11 @@ public class Atleta {
     @JsonIgnore
     private Profissional profissional;
 
+    // Relação 1:0..1 com Registro de Hidratação
+    @Setter
+    @OneToOne(mappedBy = "atleta", cascade = CascadeType.ALL)
+    private RegistroDeHidratacao registroDeHidratacao;
+
     //Relação 1 com muitos SessaoDeTreino
     @JsonIgnore
     @OneToMany(mappedBy = "atleta", cascade = CascadeType.ALL)
