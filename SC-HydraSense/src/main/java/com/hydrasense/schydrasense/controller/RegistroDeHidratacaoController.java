@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin // Permite que o seu front-end em React consiga acessar a API
 @RestController
 @RequestMapping("/hidratacao")
 public class RegistroDeHidratacaoController {
