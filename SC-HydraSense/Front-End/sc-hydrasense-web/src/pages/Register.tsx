@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Microscope, Utensils, Activity, BriefcaseMedical } from 'lucide-react';
+import { Microscope, Utensils, Activity, BriefcaseMedical, MapPin, Award, User, Hash, Trophy } from 'lucide-react';
 import './Register.css';
 
 const PERFIS = [
@@ -9,26 +9,50 @@ const PERFIS = [
   { id: 'medico', rotulo: 'MÉDICO', icone: <BriefcaseMedical size={24} /> },
 ];
 
+const CLUBES_DISPONIVEIS = [
+  "América-SP", "Audax", "Água Santa", "Bandeirante", "Barretos",
+  "Botafogo-SP", "Bragantino", "Capivariano", "Catanduvense", "Comercial-SP",
+  "Corinthians", "Desportivo Brasil", "EC São Bernardo", "Ferroviária", "Francana",
+  "Gremio", "Guarani", "Inter de Limeira", "Ipiranga", "Itapirense",
+  "Ituano", "Juventus", "Linense", "Marília", "Matonense",
+  "Mogi Mirim", "Nacional", "Noroeste", "Novorizontino", "Oeste",
+  "Olímpia", "Palmeiras", "Paulista", "Penapolense", "Ponte Preta",
+  "Portuguesa", "Portuguesa Santista", "Primavera", "Rio Claro", "Santo André",
+  "Santos", "São Bento", "São Bernardo FC", "São Caetano", "São Paulo",
+  "Taubaté", "União Barbarense", "Velo Clube", "XV de Jaú", "XV de Piracicaba"
+];
+
+const UFS = [
+  'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG',
+  'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
+];
+
 export function Register() {
   const navigate = useNavigate();
   const [perfilAtivo, setPerfilAtivo] = useState('nutricionista');
+  const [buscaClube, setBuscaClube] = useState('');
+  const [mostrarSugestoes, setMostrarSugestoes] = useState(false);
+
+  const clubesFiltrados = CLUBES_DISPONIVEIS.filter(clube => 
+    clube.toLowerCase().includes(buscaClube.toLowerCase())
+  );
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate('/identificacao'); 
+  };
 
   return (
     <div className="tela-registro">
       
-      {/* =========================================
-          PAINEL LATERAL ESQUERDO (VERMELHO)
-      ========================================= */}
       <aside className="painel-lateral">
-        
         <div className="lateral-topo">
           <h2 className="lateral-titulo">SÃO CAMILO WEB</h2>
-          <span className="lateral-subtitulo">HYDRO SYNC PROTOCOLO V4.0</span>
+          <span className="lateral-subtitulo">HYDRO SENSE PROTOCOLO V4.0</span>
         </div>
 
         <div className="lateral-meio">
           <div className="lateral-icone">
-            {/* Ícone reduzido para acompanhar a nova proporção da barra */}
             <Microscope size={28} strokeWidth={1.5} />
           </div>
           <div className="lateral-textos-meio">
@@ -48,22 +72,17 @@ export function Register() {
             <div className="trilha"></div>
           </div>
           <div className="legendas-progresso">
-            <span className="legenda-progresso ativa">IDENTIDADE</span>
-            <span className="legenda-progresso">CREDENCIAIS</span>
+            <span className="legenda-progresso ativa">CREDENCIAIS</span>
+            <span className="legenda-progresso">IDENTIDADE</span>
             <span className="legenda-progresso">EQUIPE</span>
           </div>
         </div>
-
       </aside>
 
-      {/* =========================================
-          PAINEL PRINCIPAL (BRANCO/CINZA)
-      ========================================= */}
       <main className="painel-principal">
-        
         <header className="cabecalho-fluxo">
-          <span className="texto-passo">PASSO 01 / IDENTIDADE</span>
-          <h1 className="titulo-pagina">CADASTRO DE ALUNO</h1>
+          <span className="texto-passo">PASSO 01 / CREDENCIAMENTO</span>
+          <h1 className="titulo-pagina">CADASTRO PROFISSIONAL</h1>
         </header>
 
         <section className="secao-selecao">
@@ -83,41 +102,92 @@ export function Register() {
           </div>
         </section>
 
-        <form className="formulario-corpo">
+        <form className="formulario-corpo" onSubmit={handleSubmit}>
+          
+          {/* NOME COMPLETO - Linha Única */}
           <div className="campo-entrada">
             <label>NOME COMPLETO</label>
-            <input type="text" placeholder="Nome Completo" required />
+            <div className="container-input-linha">
+              <User size={18} color="#6C757D" />
+              <input type="text" placeholder="Nome Completo" required />
+            </div>
           </div>
 
+          {/* REGISTRO E UF - Linha Dupla */}
           <div className="linha-dupla">
             <div className="campo-entrada">
-              <label>REGISTRO PROFISSIONAL (CRN/CRM)</label>
-              <input type="text" placeholder="Ex: CRM-12345" required />
+              <label>REGISTRO PROFISSIONAL (CRN/CRM/CREF)</label>
+              <div className="container-input-linha">
+                <Hash size={18} color="#6C757D" />
+                <input type="text" placeholder="Ex: CRM-12345" required />
+              </div>
             </div>
+            
             <div className="campo-entrada">
+              <label>UF DA FILIAÇÃO</label>
+              <div className="container-input-linha">
+                <MapPin size={18} color="#6C757D" />
+                <select required className="select-registro">
+                  <option value="" disabled selected>Selecione</option>
+                  {UFS.map(uf => <option key={uf} value={uf}>{uf}</option>)}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* ESPECIALIDADE E CLUBE - Linha Dupla */}
+          <div className="linha-dupla">
+            <div className="campo-entrada">
+              <label>ESPECIALIDADE</label>
+              <div className="container-input-linha">
+                <Award size={18} color="#6C757D" />
+                <input type="text" placeholder="Ex: Fisiologia" required />
+              </div>
+            </div>
+
+            <div className="campo-entrada" style={{ position: 'relative' }}>
               <label>INSTITUIÇÃO/CLUBE</label>
-              <input type="text" placeholder="Organização" required />
+              <div className="container-input-linha">
+                <Trophy size={18} color="#6C757D" />
+                <input 
+                  type="text" 
+                  placeholder="Pesquisar Clube..." 
+                  value={buscaClube}
+                  onChange={(e) => {
+                      setBuscaClube(e.target.value);
+                      setMostrarSugestoes(true);
+                  }}
+                  onFocus={() => setMostrarSugestoes(true)}
+                  required 
+                />
+              </div>
+              
+              {mostrarSugestoes && buscaClube.length > 0 && (
+                <ul className="sugestoes-clubes">
+                  {clubesFiltrados.map((clube) => (
+                    <li key={clube} onClick={() => {
+                      setBuscaClube(clube);
+                      setMostrarSugestoes(false);
+                    }}>{clube}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
 
           <footer className="acoes-formulario">
             <button type="submit" className="botao-acao-principal">
-              CRIAR CONTA
+              PRÓXIMO PASSO
             </button>
             
             <div className="bloco-login">
               <span className="pergunta-login">Já tem uma conta?</span>
-              <button 
-                type="button" 
-                className="botao-acao-secundario"
-                onClick={() => navigate('/')}
-              >
+              <button type="button" className="botao-acao-secundario" onClick={() => navigate('/')}>
                 Fazer Login
               </button>
             </div>
           </footer>
         </form>
-
       </main>
     </div>
   );
