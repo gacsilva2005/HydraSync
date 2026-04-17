@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Microscope, Utensils, Activity, BriefcaseMedical } from 'lucide-react';
+import './Login.css';
 import './Register.css';
 
 const PERFIS = [
@@ -83,7 +84,7 @@ export function Register() {
           </div>
         </section>
 
-        <form className="formulario-corpo">
+        <form className="formulario-corpo" onSubmit={(e) => { e.preventDefault(); navigate('/identificador'); }}>
           <div className="campo-entrada">
             <label>NOME COMPLETO</label>
             <input type="text" placeholder="Nome Completo" required />
