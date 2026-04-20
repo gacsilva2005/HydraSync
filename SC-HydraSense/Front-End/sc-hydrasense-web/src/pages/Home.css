@@ -1,0 +1,291 @@
+/* =========================================
+   LAYOUT GERAL
+========================================= */
+.login-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--branco-puro);
+  overflow: hidden;
+}
+
+/* =========================================
+   LADO ESQUERDO: BRANDING
+========================================= */
+.login-branding {
+  width: 55%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribui Topo, Meio e Base */
+  padding: 60px 0; /* Padding vertical, lateral controlado por blocos internos */
+  position: relative;
+  overflow: hidden;
+  color: var(--branco-puro);
+}
+
+/* Logo no Canto Superior Esquerdo */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding-left: 60px; /* Mantém encostado na esquerda com respiro */
+}
+
+/* Conteúdo Central (Título e Subtítulo) */
+.branding-content {
+  max-width: 500px;
+  text-align: left;
+  padding-left: 60px; /* Mantém encostado na esquerda */
+}
+
+.hero-title {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 0.85; /* Letras bem juntas verticalmente */
+  margin-bottom: 20px;
+  letter-spacing: -2px; /* Letras bem juntas horizontalmente */
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  line-height: 1.4;
+  max-width: 400px;
+}
+
+/* Rodapé: Hospital São Camilo (Centralizado no "Chão") */
+.branding-footer {
+  width: 100%;
+  text-align: center; /* Centraliza horizontalmente */
+  opacity: 0.5;
+  margin-bottom: 0;
+  padding-bottom: 10px; /* Ajuste para encostar no fundo */
+}
+
+.hospital-name { 
+  font-size: 32px; 
+  font-weight: 300; 
+  margin: 0; 
+  letter-spacing: 12px; 
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+.brand-name { 
+  font-size: 56px; 
+  font-weight: 800; 
+  margin: 0; 
+  line-height: 1;
+}
+
+/* =========================================
+   LADO DIREITO: FORMULÁRIO
+========================================= */
+.login-form-side {
+  width: 45%;
+  background-color: var(--branco-puro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px 0 0 30px;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+  z-index: 5;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  text-align: left;
+}
+
+.form-header h1 {
+  font-size: 24px;
+  color: var(--vermelho-critico);
+  margin-bottom: 8px;
+}
+
+.form-header p {
+  color: var(--cinza-muted);
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+
+.input-group {
+  margin-bottom: 25px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--cinza-muted);
+  margin-bottom: 8px;
+}
+
+.input-field {
+  display: flex;
+  align-items: center;
+  border-bottom: 1.5px solid var(--borda-padrao);
+  padding-bottom: 8px;
+}
+
+.input-field input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: transparent;
+  color: #212529 !important; /* Letras pretas ao digitar */
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.forgot-password {
+  background: none;
+  border: none;
+  color: var(--vermelho-acao);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-login-primary {
+  width: 100%;
+  background-color: var(--vermelho-critico);
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+/* Botões Sociais (Google/Apple) */
+.social-login {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-social {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  background: #ffffff;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #212529;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.divider {
+  text-align: center;
+  margin: 30px 0;
+  position: relative;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #eee;
+}
+
+.divider span {
+  position: relative;
+  background: white;
+  padding: 0 15px;
+  font-size: 10px;
+  color: #999;
+}
+
+.signup-prompt {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #212529;
+}
+
+.signup-prompt span {
+  color: var(--vermelho-acao);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Estilo do botão de mostrar senha */
+.btn-show-password {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease;
+}
+
+.btn-show-password:active {
+  transform: scale(0.9);
+}
+
+/* Botões Sociais com Hover Vermelho */
+.social-login {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-social {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  background: #ffffff;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #212529;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease; /* Transição suave para o hover */
+}
+
+.btn-social:hover {
+  border-color: var(--vermelho-acao);
+  color: var(--vermelho-acao);
+  background-color: rgba(217, 4, 41, 0.05); /* Um fundo leve vermelho */
+}
+
+/* Garante que o ícone acompanhe a cor do texto no hover */
+.btn-social:hover svg {
+  stroke: var(--vermelho-acao);
+}
+
+/* Ajuste do ícone Droplet no logo */
+.logo-section svg {
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
+}

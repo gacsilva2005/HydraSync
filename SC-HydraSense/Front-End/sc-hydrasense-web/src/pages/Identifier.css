@@ -14,13 +14,18 @@
 /* =========================================
    LAYOUT GERAL
 ========================================= */
+/* =========================================
+   LAYOUT GERAL
+========================================= */
 .tela-registro {
   display: flex;
+
   width: 100vw;
   height: 100vh;
-  overflow: hidden; 
-  background-color: var(--branco-puro);
-  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.tela-registro.layout-reverso {
+  flex-direction: row-reverse;
 }
 
 /* =========================================
@@ -493,7 +498,7 @@
 
 /* Compactando a Textarea */
 .textarea-custom {
-  rows: 3; /* Definido no TSX para ocupar menos espaço */
+  rows: 3;  
   padding: 5px 0;
 }
 

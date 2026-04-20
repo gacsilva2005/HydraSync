@@ -1,0 +1,193 @@
+/* Layout Principal e Fundo */
+.tela-atleta-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--hydro-bg-main, #F8F9FA);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Barras Laterais em Vermelho Vinho (Critical) */
+.barra-vinho {
+  position: absolute;
+  top: 0;
+  width: 90px;
+  height: 100%;
+  background-color: var(--hydro-critical, #641220);
+  z-index: 5;
+}
+
+.esquerda { 
+  left: 0; 
+}
+
+.direita { 
+  right: 0; 
+}
+
+/* Content Container Centralizado */
+.container-atleta-distribuido {
+  width: 100%;
+  max-width: 1100px;
+  z-index: 10;
+  padding: 50px 80px 0 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cabecalho Centralizado */
+.header-atleta {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.label-passo {
+  color: var(--hydro-text-muted, #6C757D);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.titulo-hero-atleta {
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--hydro-text-primary, #212529);
+  margin-top: 15px;
+  letter-spacing: -1.5px;
+}
+
+/* Grid de Inputs */
+.form-atleta-full {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.grid-campos-atleta {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+}
+
+.bloco-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bloco-input label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--hydro-text-muted, #6C757D);
+  text-align: left;
+}
+
+/* Estilo do Input */
+.wrapper-input-atleta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: var(--hydro-bg-card, #FFFFFF);
+  border: 1px solid var(--hydro-border, rgba(73, 80, 87, 0.2));
+  border-radius: 8px;
+  padding: 18px 25px;
+  transition: border-color 0.2s;
+}
+
+.wrapper-input-atleta:focus-within {
+  border-color: var(--hydro-action, #D90429);
+}
+
+.wrapper-input-atleta input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 18px;
+  outline: none;
+  color: var(--hydro-text-primary, #212529);
+}
+
+.wrapper-input-atleta svg {
+  color: var(--hydro-text-muted, #6C757D);
+}
+
+/* Validacao de Erro */
+.wrapper-input-atleta.input-error {
+  border-color: var(--hydro-action, #D90429);
+}
+
+.mensagem-erro-email {
+  color: var(--hydro-action, #D90429);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+}
+
+/* Avisos Centralizados */
+.container-avisos-central {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.texto-informativo-atleta {
+  font-size: 14px;
+  color: var(--hydro-text-muted, #6C757D);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Navegacao Vertical Compacta */
+.navegacao-vertical-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.seta-v-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  line-height: 0;
+}
+
+.seta-v-btn.ativa {
+  color: var(--hydro-action, #D90429);
+}
+
+.seta-v-btn.desativada {
+  color: var(--hydro-text-muted, #6C757D);
+  opacity: 0.2;
+}
+
+.ponto-estilo-minimal {
+  width: 6px;
+  height: 6px;
+  background-color: var(--hydro-border, rgba(73, 80, 87, 0.2));
+  border-radius: 50%;
+  margin: 2px 0;
+}
+
+.link-voltar-atleta {
+  background: none;
+  border: none;
+  color: var(--hydro-text-muted, #6C757D);
+  font-weight: 800;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 15px;
+  align-self: center;
+}

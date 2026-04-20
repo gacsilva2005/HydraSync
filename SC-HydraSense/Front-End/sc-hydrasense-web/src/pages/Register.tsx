@@ -43,7 +43,7 @@ export function Register() {
   };
 
   return (
-    <div className="tela-registro">
+    <div className="tela-registro"> 
       
       <aside className="painel-lateral">
         <div className="lateral-topo">
@@ -104,7 +104,6 @@ export function Register() {
 
         <form className="formulario-corpo" onSubmit={handleSubmit}>
           
-          {/* NOME COMPLETO - Linha Única */}
           <div className="campo-entrada">
             <label>NOME COMPLETO</label>
             <div className="container-input-linha">
@@ -113,13 +112,12 @@ export function Register() {
             </div>
           </div>
 
-          {/* REGISTRO E UF - Linha Dupla */}
           <div className="linha-dupla">
             <div className="campo-entrada">
               <label>REGISTRO PROFISSIONAL (CRN/CRM/CREF)</label>
               <div className="container-input-linha">
                 <Hash size={18} color="#6C757D" />
-                <input type="text" placeholder="Ex: CRM-12345" required />
+                <input type="text" placeholder="Ex: CRM-224578" required />
               </div>
             </div>
             
@@ -127,15 +125,14 @@ export function Register() {
               <label>UF DA FILIAÇÃO</label>
               <div className="container-input-linha">
                 <MapPin size={18} color="#6C757D" />
-                <select required className="select-registro">
-                  <option value="" disabled selected>Selecione</option>
+                <select required className="select-registro" defaultValue="">
+                  <option value="" disabled>Selecione</option>
                   {UFS.map(uf => <option key={uf} value={uf}>{uf}</option>)}
                 </select>
               </div>
             </div>
           </div>
 
-          {/* ESPECIALIDADE E CLUBE - Linha Dupla */}
           <div className="linha-dupla">
             <div className="campo-entrada">
               <label>ESPECIALIDADE</label>

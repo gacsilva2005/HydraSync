@@ -1,0 +1,218 @@
+/* Layout e Alinhamento Central */
+.tela-registro-full {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--hydro-bg-main, #F8F9FA);
+  overflow: hidden;
+}
+
+.painel-principal-central {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 80px; 
+  box-sizing: border-box;
+}
+
+.cabecalho-fluxo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.texto-passo {
+  color: var(--hydro-text-muted, #6C757D);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.titulo-pagina {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--hydro-text-primary, #212529);
+  margin: 10px 0 0 0;
+  letter-spacing: -1px;
+}
+
+.card-selecao-equipe {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.modal-equipe {
+  background-color: var(--hydro-bg-card, #FFFFFF);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Botoes Primarios */
+.botao-equipe-primario {
+  background-color: var(--hydro-action, #D90429);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  padding: 18px;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.botao-equipe-primario:hover {
+  filter: brightness(0.9);
+}
+
+.btn-confirmar-codigo {
+  margin-top: 25px;
+}
+
+/* Botao Avancar (Cinza e sem borda) */
+.botao-avancar-fluxo {
+  background: transparent;
+  color: var(--hydro-text-muted, #6C757D);
+  border: none;
+  padding: 16px;
+  font-weight: 800; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.botao-avancar-fluxo:hover {
+  color: var(--hydro-action, #D90429);
+}
+
+/* Botao Voltar (Sem bordas) */
+.botao-voltar-limpo {
+  background: transparent;
+  border: none;
+  color: var(--hydro-text-muted, #6C757D);
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 5px 0;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+
+.botao-voltar-limpo:hover {
+  color: var(--hydro-action, #D90429);
+}
+
+/* Input de Codigo */
+.input-codigo-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #F8F9FA;
+  border: 2px solid var(--hydro-border, rgba(73, 80, 87, 0.2));
+  border-radius: 8px;
+  padding: 12px 15px;
+  gap: 12px;
+}
+
+.input-codigo-equipe {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 22px;
+  font-weight: 800;
+  outline: none;
+  color: var(--hydro-text-primary, #212529);
+  letter-spacing: 4px;
+}
+
+/* Divisor */
+.divisor-avancar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.linha-divisor {
+  flex: 1;
+  height: 1px;
+  background-color: var(--hydro-border, rgba(73, 80, 87, 0.2));
+}
+
+/* PROGRESSO INFERIOR (Barra Vermelha) */
+.progresso-footer-compacto {
+  background-color: var(--hydro-critical, #641220);
+  width: 100%;
+  padding: 30px 0; 
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+}
+
+.barra-progresso-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.fluxo-progresso-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.item-progresso {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.trilha-mini {
+  height: 4px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.trilha-mini.ativa {
+  background-color: #FFFFFF;
+}
+
+.legenda-mini {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+}
+
+.legenda-mini.ativa {
+  color: #FFFFFF;
+}
+
+.legenda-avancar {
+  font-size: 11px;
+  color: var(--hydro-text-muted, #6C757D);
+  text-align: center;
+  margin-top: 15px;
+}
