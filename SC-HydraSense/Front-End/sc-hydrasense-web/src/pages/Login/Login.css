@@ -1,6 +1,11 @@
 /* =========================================
+   CSS COMPARTILHADO — Login / Register / Identifier
+   Importar este arquivo em ambos os componentes.
+   ========================================= */
+
+/* =========================================
    VARIÁVEIS DO DESIGN SYSTEM
-========================================= */
+   ========================================= */
 :root {
   --vermelho-acao: #D90429;
   --vermelho-critico: #641220;
@@ -13,19 +18,19 @@
 
 /* =========================================
    LAYOUT GERAL
-========================================= */
+   ========================================= */
 .tela-registro {
   display: flex;
   width: 100vw;
   height: 100vh;
   overflow: hidden; 
   background-color: var(--branco-puro);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
 }
 
 /* =========================================
    PAINEL LATERAL (ESQUERDA)
-========================================= */
+   ========================================= */
 .painel-lateral {
   width: 30%; 
   background-color: var(--vermelho-critico);
@@ -37,27 +42,29 @@
   color: var(--branco-puro);
 }
 
-/* Topo da Lateral - Agora Centralizado */
+/* Topo da Lateral - Centralizado */
 .lateral-topo {
   text-align: center;
 }
 
 .lateral-titulo {
   font-size: 24px; 
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 2px;
   margin: 0 0 8px 0;
+  font-family: var(--font-display);
 }
 
 .lateral-subtitulo {
   font-size: 10px; 
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.6);
-  display: block; /* Garante que respeite o alinhamento central */
+  display: block;
+  font-family: var(--font-display);
 }
 
-/* --- Meio da Lateral (Precisão Clínica) - Mantido Intacto --- */
+/* --- Meio da Lateral --- */
 .lateral-meio {
   display: flex;
   flex-direction: row;
@@ -111,7 +118,7 @@
 
 .legendas-progresso {
   display: flex;
-  gap: 8px; /* Adicionado para sincronizar com o gap das barras */
+  gap: 8px;
 }
 
 .legenda-progresso {
@@ -120,7 +127,7 @@
   letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.4);
   flex: 1;
-  text-align: center; /* Centraliza IDENTIDADE, CREDENCIAIS e EQUIPE debaixo de suas barras */
+  text-align: center;
 }
 
 .legenda-progresso.ativa {
@@ -129,7 +136,7 @@
 
 /* =========================================
    PAINEL PRINCIPAL (DIREITA)
-========================================= */
+   ========================================= */
 .painel-principal {
   width: 70%; 
   background-color: var(--cinza-fundo);
@@ -182,6 +189,8 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   color: var(--preto-texto); 
+  font-family: var(--font-body);
+  font-weight: 500;
 }
 
 .botao-perfil:hover {
@@ -213,7 +222,7 @@
 
 /* =========================================
    ESTRUTURA DO FORMULÁRIO
-========================================= */
+   ========================================= */
 .formulario-corpo {
   display: flex;
   flex-direction: column;
@@ -237,6 +246,7 @@
   font-size: 10px;
   font-weight: 700;
   margin-bottom: 5px;
+  font-family: var(--font-body);
 }
 
 .campo-entrada input {
@@ -248,6 +258,7 @@
   outline: none;
   color: var(--preto-texto);
   transition: border-color 0.2s;
+  font-family: var(--font-body);
 }
 
 .campo-entrada input:focus {
@@ -256,7 +267,7 @@
 
 /* =========================================
    RODAPÉ DO FORMULÁRIO (BOTÕES FINAIS)
-========================================= */
+   ========================================= */
 .acoes-formulario {
   display: flex;
   align-items: center;
@@ -271,11 +282,12 @@
   border-radius: 4px;
   padding: 18px 40px;
   font-size: 14px;
-  font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(217, 4, 41, 0.2);
   transition: filter 0.2s;
+  font-family: var(--font-display);
+  font-weight: 700;
 }
 
 .botao-acao-principal:hover {
@@ -308,6 +320,40 @@
 .botao-acao-secundario:hover {
   filter: brightness(1.2);
 }
+
+/* =========================================
+   INPUTS COM ÍCONE (Da sua branch - Para o Identifier)
+   ========================================= */
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid rgba(73, 80, 87, 0.2);
+}
+
+.input-with-icon svg {
+  color: #6C757D;
+}
+
+.select-custom, 
+.textarea-custom,
+.campo-entrada input {
+  color: #212529 !important;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.select-custom {
+  padding: 10px 0;
+  border-bottom: 2px solid rgba(73, 80, 87, 0.2);
+  cursor: pointer;
+}
+
+/* =========================================
+   COMPONENTES NOVOS (Da branch Develop - Para o Register)
+   ========================================= */
 
 /* Estilização das Sugestões de Clubes */
 .sugestoes-clubes {

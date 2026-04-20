@@ -1,0 +1,234 @@
+:root {
+    --hydro-bg-main: #F8F9FA;
+    --hydro-bg-card: #FFFFFF;
+    --hydro-bg-header: #121212;
+    --hydro-action: #D90429;
+    --hydro-action-hover: #641220;
+    --hydro-attention: #FFD60A;
+    --hydro-success: #289348;
+    --hydro-text-muted: #6C757D;
+    --hydro-text-primary: #212529;
+    --hydro-branco: #FFFFFF;
+    --hydro-border: rgba(73, 80, 87, 0.2);
+}
+
+.pageweb {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 70px 1fr;
+    height: 100vh;
+    background-color: var(--hydro-bg-main);
+    font-family: var(--font-body);
+}
+
+.pageweb__main {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.pageweb__title {
+    color: var(--hydro-text-primary);
+    font-size: 24px;
+    margin: 0 0 20px 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+.hydro-header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    background-color: var(--hydro-bg-header);
+    color: var(--hydro-branco);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hydro-header-search {
+    background-color: var(--hydro-bg-main);
+    border: 1px solid var(--hydro-border);
+    color: var(--hydro-text-primary);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    width: 250px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hydro-header-search::placeholder {
+    color: var(--hydro-text-muted);
+}
+
+.hydro-header-search:focus {
+    border-color: var(--hydro-action);
+    box-shadow: 0 0 0 3px rgba(217, 4, 41, 0.15);
+}
+
+.hydro-header nav ul {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.hydro-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0;
+    font-family: var(--font-display);
+}
+
+.hydro-header nav ul {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.hydro-header nav li {
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s;
+    color: var(--hydro-text-muted);
+}
+
+.hydro-header nav li:hover {
+    color: var(--hydro-branco);
+}
+
+.hydro-sidebar {
+    grid-column: 1;
+    grid-row: 2;
+    background-color: var(--hydro-bg-header);
+    border-right: 1px solid var(--hydro-border);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hydro-sidebar-logo {
+    display: block;
+    color: var(--hydro-branco);
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+}
+
+.hydro-sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-weight: 500;
+}
+
+.hydro-sidebar-menu li {
+    padding: 12px 16px;
+    border-radius: 6px;
+    color: var(--hydro-text-muted);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.hydro-sidebar-menu li a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+}
+
+.hydro-sidebar-menu li:hover {
+    background-color: var(--hydro-bg-main);
+    color: var(--hydro-text-primary);
+}
+
+.hydro-sidebar-menu li.active {
+    background-color: rgba(217, 4, 41, 0.1);
+    color: var(--hydro-action);
+    font-weight: 600;
+    border-left: 4px solid var(--hydro-action);
+}
+
+.atletas-header {
+    display: flex;
+    justify-content: space-between;
+    /* Mudamos para flex-start para o botão não ficar "preso" no meio se o texto crescer */
+    align-items: flex-start; 
+    margin-bottom: 64px; /* Aumentado de 32px para 64px: empurra TUDO de baixo para longe */
+}
+
+/* Grupo de texto (Título + Subtítulo) */
+.atletas-header__info {
+    text-align: left; /* Garante que tudo dentro da div alinhe à esquerda */
+}
+
+.atletas-header__info h1 {
+    font-size: 50px;
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1; /* Diminui o espaço interno da linha do título */
+}
+
+.atletas-header__info p {
+    margin-top: 30px; /* Aumentado: cria distância entre o h1 (Atletas) e o parágrafo */
+    margin-bottom: 0;
+    color: var(--hydro-text-muted);
+    font-family: var(--font-body);
+    font-size: 16px;
+    max-width: 800px; /* Evita que o texto estique muito para a direita */
+    line-height: 1.6;
+}
+
+/* Botão Primário */
+.btn-primary {
+    background-color: var(--hydro-action);
+    color: var(--hydro-branco);
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Se quiser descer o botão especificamente, use a margem abaixo: */
+    margin-top: 70px; 
+}
+
+.btn-primary:hover {
+    background-color: var(--hydro-action-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(217, 4, 41, 0.25);
+}
+
+/* Área de conteúdo/Lista vazia */
+.atletas-empty-state {
+    background-color: var(--hydro-bg-card);
+    border: 1px solid var(--hydro-border);
+    border-radius: 8px;
+    padding: 60px 40px;
+    text-align: center;
+    color: var(--hydro-text-muted);
+    font-family: var(--font-body);
+}

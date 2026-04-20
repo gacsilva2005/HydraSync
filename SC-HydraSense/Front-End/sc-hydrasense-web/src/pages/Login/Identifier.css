@@ -1,0 +1,152 @@
+/* =========================================
+   Identifier.css — Estilos EXCLUSIVOS do Identifier
+   Os estilos compartilhados estão em Login.css
+   ========================================= */
+
+/* Ajuste para o input de arquivo não quebrar a linha */
+.file-input {
+  font-size: 12px;
+  padding: 10px 0;
+}
+
+/* Checkbox de Termos */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-top: 15px;
+  color: #212529;
+}
+
+/* Preview de foto circular (legado — não usado no momento) */
+.preview-foto-container {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.foto-circular {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #D90429;
+}
+
+.foto-placeholder {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ccc;
+}
+
+/* Textarea Custom */
+.textarea-custom {
+  color: #212529 !important;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 5px 0;
+  resize: none;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* Botão do Olhinho dentro do input de senha */
+.botao-olhinho {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: #6C757D;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.botao-olhinho:hover {
+  color: #D90429;
+}
+
+/* Estilo Foto 3x4 */
+.preview-foto-3x4 {
+  width: 75px;
+  height: 100px;
+  background-color: white;
+  border: 1px solid var(--borda-padrao);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
+
+.foto-3x4 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto-placeholder-3x4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #6C757D;
+}
+
+.foto-placeholder-3x4 span {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+/* Estilo do Erro de Senha */
+.input-with-icon.erro {
+  border-bottom-color: #ff4d4d !important;
+}
+
+.msg-erro {
+  color: #ff4d4d;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 5px;
+}
+
+/* =========================================
+   OVERRIDES DE COMPACTAÇÃO — layout Identifier
+   ========================================= */
+.tela-registro .painel-principal {
+  padding: 0 8%;
+}
+
+.tela-registro .formulario-corpo {
+  gap: 15px;
+}
+
+.tela-registro .titulo-pagina {
+  font-size: 38px;
+  margin: 5px 0 20px 0;
+}
+
+.tela-registro .painel-lateral {
+  padding: 40px 30px;
+}
+
+.tela-registro .lateral-texto {
+  font-size: 10.5px;
+}

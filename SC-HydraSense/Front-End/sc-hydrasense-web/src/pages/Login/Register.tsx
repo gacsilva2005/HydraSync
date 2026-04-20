@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Microscope, Utensils, Activity, BriefcaseMedical, MapPin, Award, User, Hash, Trophy } from 'lucide-react';
+import './Login.css';
 import './Register.css';
 
 const PERFIS = [
@@ -33,18 +34,19 @@ export function Register() {
   const [buscaClube, setBuscaClube] = useState('');
   const [mostrarSugestoes, setMostrarSugestoes] = useState(false);
 
-  const clubesFiltrados = CLUBES_DISPONIVEIS.filter(clube => 
+  const clubesFiltrados = CLUBES_DISPONIVEIS.filter(clube =>
     clube.toLowerCase().includes(buscaClube.toLowerCase())
   );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/identificacao'); 
+    // Ajustado para usar a sua nova rota padrão
+    navigate('/identificador');
   };
 
   return (
     <div className="tela-registro">
-      
+
       <aside className="painel-lateral">
         <div className="lateral-topo">
           <h2 className="lateral-titulo">SÃO CAMILO WEB</h2>
@@ -58,8 +60,8 @@ export function Register() {
           <div className="lateral-textos-meio">
             <h3 className="lateral-destaque">PRECISÃO CLÍNICA</h3>
             <p className="lateral-texto">
-              Cadastre suas credenciais profissionais<br/>
-              para acessar logs de performance de alta<br/>
+              Cadastre suas credenciais profissionais<br />
+              para acessar logs de performance de alta<br />
               densidade e análises de hidratação.
             </p>
           </div>
@@ -103,7 +105,7 @@ export function Register() {
         </section>
 
         <form className="formulario-corpo" onSubmit={handleSubmit}>
-          
+
           {/* NOME COMPLETO - Linha Única */}
           <div className="campo-entrada">
             <label>NOME COMPLETO</label>
@@ -122,13 +124,14 @@ export function Register() {
                 <input type="text" placeholder="Ex: CRM-12345" required />
               </div>
             </div>
-            
+
             <div className="campo-entrada">
               <label>UF DA FILIAÇÃO</label>
               <div className="container-input-linha">
                 <MapPin size={18} color="#6C757D" />
-                <select required className="select-registro">
-                  <option value="" disabled selected>Selecione</option>
+                {/* Corrigido o erro de selected do React usando defaultValue */}
+                <select required className="select-registro" defaultValue="">
+                  <option value="" disabled>Selecione</option>
                   {UFS.map(uf => <option key={uf} value={uf}>{uf}</option>)}
                 </select>
               </div>
@@ -149,19 +152,19 @@ export function Register() {
               <label>INSTITUIÇÃO/CLUBE</label>
               <div className="container-input-linha">
                 <Trophy size={18} color="#6C757D" />
-                <input 
-                  type="text" 
-                  placeholder="Pesquisar Clube..." 
+                <input
+                  type="text"
+                  placeholder="Pesquisar Clube..."
                   value={buscaClube}
                   onChange={(e) => {
-                      setBuscaClube(e.target.value);
-                      setMostrarSugestoes(true);
+                    setBuscaClube(e.target.value);
+                    setMostrarSugestoes(true);
                   }}
                   onFocus={() => setMostrarSugestoes(true)}
-                  required 
+                  required
                 />
               </div>
-              
+
               {mostrarSugestoes && buscaClube.length > 0 && (
                 <ul className="sugestoes-clubes">
                   {clubesFiltrados.map((clube) => (
@@ -179,7 +182,7 @@ export function Register() {
             <button type="submit" className="botao-acao-principal">
               PRÓXIMO PASSO
             </button>
-            
+
             <div className="bloco-login">
               <span className="pergunta-login">Já tem uma conta?</span>
               <button type="button" className="botao-acao-secundario" onClick={() => navigate('/')}>
