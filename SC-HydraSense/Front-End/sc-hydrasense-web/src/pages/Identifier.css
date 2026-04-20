@@ -1,11 +1,6 @@
 /* =========================================
-   CSS COMPARTILHADO — Login / Register / Identifier
-   Importar este arquivo em ambos os componentes.
-   ========================================= */
-
-/* =========================================
    VARIÁVEIS DO DESIGN SYSTEM
-   ========================================= */
+========================================= */
 :root {
   --vermelho-acao: #D90429;
   --vermelho-critico: #641220;
@@ -18,19 +13,19 @@
 
 /* =========================================
    LAYOUT GERAL
-   ========================================= */
+========================================= */
 .tela-registro {
   display: flex;
   width: 100vw;
   height: 100vh;
   overflow: hidden; 
   background-color: var(--branco-puro);
-  font-family: var(--font-body);
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
 /* =========================================
    PAINEL LATERAL (ESQUERDA)
-   ========================================= */
+========================================= */
 .painel-lateral {
   width: 30%; 
   background-color: var(--vermelho-critico);
@@ -42,29 +37,27 @@
   color: var(--branco-puro);
 }
 
-/* Topo da Lateral - Centralizado */
+/* Topo da Lateral - Agora Centralizado */
 .lateral-topo {
   text-align: center;
 }
 
 .lateral-titulo {
   font-size: 24px; 
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 2px;
   margin: 0 0 8px 0;
-  font-family: var(--font-display);
 }
 
 .lateral-subtitulo {
   font-size: 10px; 
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.6);
-  display: block;
-  font-family: var(--font-display);
+  display: block; /* Garante que respeite o alinhamento central */
 }
 
-/* --- Meio da Lateral --- */
+/* --- Meio da Lateral (Precisão Clínica) - Mantido Intacto --- */
 .lateral-meio {
   display: flex;
   flex-direction: row;
@@ -118,7 +111,7 @@
 
 .legendas-progresso {
   display: flex;
-  gap: 8px;
+  gap: 8px; /* Adicionado para sincronizar com o gap das barras */
 }
 
 .legenda-progresso {
@@ -127,7 +120,7 @@
   letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.4);
   flex: 1;
-  text-align: center;
+  text-align: center; /* Centraliza IDENTIDADE, CREDENCIAIS e EQUIPE debaixo de suas barras */
 }
 
 .legenda-progresso.ativa {
@@ -136,7 +129,7 @@
 
 /* =========================================
    PAINEL PRINCIPAL (DIREITA)
-   ========================================= */
+========================================= */
 .painel-principal {
   width: 70%; 
   background-color: var(--cinza-fundo);
@@ -189,8 +182,6 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   color: var(--preto-texto); 
-  font-family: var(--font-body);
-  font-weight: 500;
 }
 
 .botao-perfil:hover {
@@ -222,7 +213,7 @@
 
 /* =========================================
    ESTRUTURA DO FORMULÁRIO
-   ========================================= */
+========================================= */
 .formulario-corpo {
   display: flex;
   flex-direction: column;
@@ -246,7 +237,6 @@
   font-size: 10px;
   font-weight: 700;
   margin-bottom: 5px;
-  font-family: var(--font-body);
 }
 
 .campo-entrada input {
@@ -258,7 +248,6 @@
   outline: none;
   color: var(--preto-texto);
   transition: border-color 0.2s;
-  font-family: var(--font-body);
 }
 
 .campo-entrada input:focus {
@@ -267,7 +256,7 @@
 
 /* =========================================
    RODAPÉ DO FORMULÁRIO (BOTÕES FINAIS)
-   ========================================= */
+========================================= */
 .acoes-formulario {
   display: flex;
   align-items: center;
@@ -282,12 +271,11 @@
   border-radius: 4px;
   padding: 18px 40px;
   font-size: 14px;
+  font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(217, 4, 41, 0.2);
   transition: filter 0.2s;
-  font-family: var(--font-display);
-  font-weight: 700;
 }
 
 .botao-acao-principal:hover {
@@ -321,24 +309,11 @@
   filter: brightness(1.2);
 }
 
-/* =========================================
-   INPUTS COM ÍCONE (Da sua branch - Para o Identifier)
-   ========================================= */
-.input-with-icon {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 2px solid rgba(73, 80, 87, 0.2);
-}
-
-.input-with-icon svg {
-  color: #6C757D;
-}
-
+/* Garante que o texto do select e do input seja preto */
 .select-custom, 
 .textarea-custom,
 .campo-entrada input {
-  color: #212529 !important;
+  color: #212529 !important; /* var(--preto-texto) */
   width: 100%;
   background: transparent;
   border: none;
@@ -351,67 +326,191 @@
   cursor: pointer;
 }
 
-/* =========================================
-   COMPONENTES NOVOS (Da branch Develop - Para o Register)
-   ========================================= */
-
-/* Estilização das Sugestões de Clubes */
-.sugestoes-clubes {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: var(--branco-puro);
-  border: 1px solid var(--borda-padrao);
-  border-top: none;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-height: 150px;
-  overflow-y: auto;
-  z-index: 10;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  border-radius: 0 0 8px 8px;
+.textarea-custom {
+  border-bottom: 2px solid rgba(73, 80, 87, 0.2);
+  padding: 10px 0;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 14px;
 }
 
-.sugestoes-clubes li {
-  padding: 10px;
-  font-size: 13px;
-  color: var(--preto-texto);
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.sugestoes-clubes li:hover {
-  background-color: var(--cinza-fundo);
-  color: var(--vermelho-acao);
-}
-
-/* Container que agrupa Ícone + Input e cria a linha vermelha/cinza embaixo */
-.container-input-linha {
+.input-with-icon {
   display: flex;
   align-items: center;
   gap: 10px;
-  border-bottom: 2px solid rgba(73, 80, 87, 0.2); /* Borda padrão */
-  transition: border-color 0.2s;
+  border-bottom: 2px solid rgba(73, 80, 87, 0.2);
 }
 
-.container-input-linha:focus-within {
-  border-bottom-color: #D90429; /* Fica vermelho ao clicar */
+.input-with-icon svg {
+  color: #6C757D;
 }
 
-.container-input-linha input, 
-.container-input-linha select {
-  border: none !important; /* Remove a borda individual para usar a do container */
-  background: transparent;
+/* Ajuste para o input de arquivo não quebrar a linha */
+.file-input {
+  font-size: 12px;
   padding: 10px 0;
-  width: 100%;
-  outline: none;
-  color: #212529; /* Texto Preto */
-  font-size: 16px;
 }
 
-.select-registro {
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   cursor: pointer;
-  appearance: none; /* Remove seta padrão do navegador se quiser */
+  font-size: 13px;
+  margin-top: 15px;
+  color: #212529;
+}
+
+.preview-foto-container {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.foto-circular {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #D90429; /* Linha vermelha em volta da foto */
+}
+
+.foto-placeholder {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ccc;
+}
+
+.textarea-custom {
+  color: #212529 !important;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 10px 0;
+  resize: none; /* Trava o tamanho pra não quebrar o layout */
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* Botão do Olhinho dentro do input */
+.botao-olhinho {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: #6C757D;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.botao-olhinho:hover {
+  color: #D90429;
+}
+
+/* Estilo Foto 3x4 */
+.preview-foto-3x4 {
+  width: 90px;
+  height: 120px; /* Proporção 3x4 */
+  background-color: #f8f9fa;
+  border: 2px solid var(--borda-padrao);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.foto-3x4 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto-placeholder-3x4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #6C757D;
+}
+
+.foto-placeholder-3x4 span {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+/* Ajuste na textarea */
+.textarea-custom {
+  font-family: inherit;
+  resize: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding-top: 8px;
+  background: transparent;
+  color: #212529;
+}
+
+/* Redução de gaps e paddings para compactar o layout */
+.painel-principal {
+  padding: 0 8%; /* Reduzido de 10% */
+}
+
+.formulario-corpo {
+  gap: 15px; /* Reduzido de 30px */
+}
+
+.titulo-pagina {
+  font-size: 38px; /* Reduzido de 44px */
+  margin: 5px 0 20px 0; /* Mais compacto */
+}
+
+/* Estilo do Erro de Senha */
+.input-with-icon.erro {
+  border-bottom-color: #ff4d4d !important;
+}
+
+.msg-erro {
+  color: #ff4d4d;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 5px;
+}
+
+/* Compactando a Textarea */
+.textarea-custom {
+  rows: 3; /* Definido no TSX para ocupar menos espaço */
+  padding: 5px 0;
+}
+
+/* Estilo Foto 3x4 mais compacto */
+.preview-foto-3x4 {
+  width: 75px;
+  height: 100px;
+  border: 1px solid var(--borda-padrao);
+  background: white;
+  flex-shrink: 0;
+}
+
+/* Garantir que o painel lateral acompanhe a redução */
+.painel-lateral {
+  padding: 40px 30px;
+}
+
+.lateral-texto {
+  font-size: 10.5px;
 }

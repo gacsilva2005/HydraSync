@@ -15,9 +15,10 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/registro" element={<Register />} />
       <Route path="/identificador" element={<Identifier />} />
+
       <Route path="/PageWeb" element={<PageWeb />}>
-        <Route path="atletas" element={<Atletas />} />
         <Route index element={<Dashboard />} />
+        <Route path="atletas" element={<Atletas />} />
         <Route path="equipes" element={<Equipes />} />
         <Route path="relatorios" element={<Relatorios />} />
         <Route path="configuracoes" element={<Configuracoes />} />
