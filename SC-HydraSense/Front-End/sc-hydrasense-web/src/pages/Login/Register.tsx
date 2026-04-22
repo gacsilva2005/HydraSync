@@ -40,17 +40,30 @@ export function Register() {
       uf: '',
       especialidade: '',
       clube: '',
-      perfil: 'nutricionista'
+      perfil: perfilAtivo
   });
 
   const clubesFiltrados = CLUBES_DISPONIVEIS.filter(clube =>
     clube.toLowerCase().includes(buscaClube.toLowerCase())
   );
 
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
         navigate('/identificador', {
-            state: formData
+            state: {
+                ...formData,
+                perfil: perfilAtivo
+            }
         });
     };
 
@@ -128,9 +141,7 @@ export function Register() {
                     type="text"
                     placeholder="Nome Completo"
                     value={formData.nome}
-                    onChange={(e) =>
-                        setFormData({ ...formData, nome: e.target.value })
-                    }
+                    onChange={handleChange}
                     required
                 />
             </div>
@@ -146,9 +157,7 @@ export function Register() {
                       type="text"
                       placeholder="Ex: CRM-12345"
                       value={formData.registro}
-                      onChange={(e) =>
-                          setFormData({ ...formData, registro: e.target.value })
-                      }
+                      onChange={handleChange}
                       required
                   />
               </div>
@@ -163,9 +172,7 @@ export function Register() {
                       required
                       className="select-registro"
                       value={formData.uf}
-                      onChange={(e) =>
-                          setFormData({ ...formData, uf: e.target.value })
-                      }
+                      onChange={handleChange}
                   >
                   <option value="" disabled>Selecione</option>
                   {UFS.map(uf => <option key={uf} value={uf}>{uf}</option>)}
@@ -184,9 +191,7 @@ export function Register() {
                       type="text"
                       placeholder="Ex: Fisiologia"
                       value={formData.especialidade}
-                      onChange={(e) =>
-                          setFormData({ ...formData, especialidade: e.target.value })
-                      }
+                      onChange={handleChange}
                       required
                   />
               </div>
