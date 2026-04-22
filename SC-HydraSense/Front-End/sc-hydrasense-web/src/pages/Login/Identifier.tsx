@@ -11,7 +11,6 @@ export function Identifier() {
   const [concordaTermos, setConcordaTermos] = useState(false);
   const [receberAtualizacoes, setReceberAtualizacoes] = useState(false);
   const [fotoPreview, setFotoPreview] = useState<string | null>(null);
-  const [resumo, setResumo] = useState('');
   
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
@@ -220,7 +219,7 @@ export function Identifier() {
           </div>
 
           <div className="campo-entrada">
-            <label>RESUMO ({resumo.length}/300 CARACTERES)</label>
+            <label>RESUMO ({dadosAcesso.resumo.length}/300/300 CARACTERES)</label>
             <div className="input-with-icon" style={{ alignItems: 'flex-start' }}>
               <FileText size={18} style={{ marginTop: '10px' }} />
                 <textarea
@@ -229,14 +228,8 @@ export function Identifier() {
                     rows={3}
                     maxLength={300}
                     className="textarea-custom"
-                    value={resumo}
-                    onChange={(e) => {
-                        setResumo(e.target.value);
-                        setDadosAcesso(prev => ({
-                            ...prev,
-                            resumo: e.target.value
-                        }));
-                    }}
+                    value={dadosAcesso.resumo}
+                    onChange={handleChange}
                 ></textarea>
             </div>
           </div>
