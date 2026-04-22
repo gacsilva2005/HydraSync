@@ -1,54 +1,45 @@
-/* =========================================
-   CSS COMPARTILHADO — Login / Register / Identifier
-   Importar este arquivo em ambos os componentes.
-   ========================================= */
+/* =====================================================
+   LOGIN.CSS — Estilos compartilhados
+   Usado por: Login, Register, Identifier
+   NÃO redefinir :root aqui. Usar variáveis de index.css
+   ===================================================== */
 
-/* =========================================
-   VARIÁVEIS DO DESIGN SYSTEM
-   ========================================= */
-:root {
-  --vermelho-acao: #D90429;
-  --vermelho-critico: #641220;
-  --cinza-fundo: #F8F9FA;
-  --branco-puro: #FFFFFF;
-  --preto-texto: #212529; 
-  --cinza-muted: #6C757D;
-  --borda-padrao: rgba(73, 80, 87, 0.2);
-}
-
-/* =========================================
+/* =====================================================
    LAYOUT GERAL
-   ========================================= */
+   ===================================================== */
 .tela-registro {
   display: flex;
   width: 100vw;
   height: 100vh;
-  overflow: hidden; 
-  background-color: var(--branco-puro);
+  overflow: hidden;
+  background-color: var(--hydro-bg-card);
   font-family: var(--font-body);
 }
 
-/* =========================================
-   PAINEL LATERAL (ESQUERDA)
-   ========================================= */
+.tela-registro.layout-reverso {
+  flex-direction: row-reverse;
+}
+
+/* =====================================================
+   PAINEL LATERAL (vermelho escuro)
+   ===================================================== */
 .painel-lateral {
-  width: 30%; 
-  background-color: var(--vermelho-critico);
+  width: 30%;
+  background-color: var(--hydro-critical);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 50px 40px; 
+  padding: 50px 40px;
   box-sizing: border-box;
-  color: var(--branco-puro);
+  color: var(--hydro-bg-card);
 }
 
-/* Topo da Lateral - Centralizado */
 .lateral-topo {
   text-align: center;
 }
 
 .lateral-titulo {
-  font-size: 24px; 
+  font-size: 24px;
   font-weight: 700;
   letter-spacing: 2px;
   margin: 0 0 8px 0;
@@ -56,7 +47,7 @@
 }
 
 .lateral-subtitulo {
-  font-size: 10px; 
+  font-size: 10px;
   font-weight: 500;
   letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.6);
@@ -64,42 +55,33 @@
   font-family: var(--font-display);
 }
 
-/* --- Meio da Lateral --- */
 .lateral-meio {
   display: flex;
   flex-direction: row;
-  gap: 12px; 
+  gap: 12px;
   align-items: flex-start;
-}
-
-.lateral-icone {
-  display: flex;
-  color: var(--branco-puro);
-  margin-top: -2px; 
 }
 
 .lateral-textos-meio {
   display: flex;
   flex-direction: column;
-  text-align: left; 
+  text-align: left;
 }
 
 .lateral-destaque {
-  font-size: 15px; 
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  margin: 0 0 6px 0;
   text-transform: uppercase;
+  margin: 0 0 6px 0;
 }
 
 .lateral-texto {
-  font-size: 11px; 
+  font-size: 11px;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.7);
-  margin: 0;
 }
 
-/* --- Rodapé da Lateral (Barra de Progresso) --- */
+/* Barra de progresso lateral */
 .trilhas-progresso {
   display: flex;
   gap: 8px;
@@ -113,7 +95,7 @@
 }
 
 .trilha.ativa {
-  background-color: var(--branco-puro);
+  background-color: var(--hydro-bg-card);
 }
 
 .legendas-progresso {
@@ -122,24 +104,23 @@
 }
 
 .legenda-progresso {
-  font-size: 9px; 
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.4);
   flex: 1;
   text-align: center;
 }
 
 .legenda-progresso.ativa {
-  color: var(--branco-puro);
+  color: var(--hydro-bg-card);
 }
 
-/* =========================================
-   PAINEL PRINCIPAL (DIREITA)
-   ========================================= */
+/* =====================================================
+   PAINEL PRINCIPAL (conteúdo/formulário)
+   ===================================================== */
 .painel-principal {
-  width: 70%; 
-  background-color: var(--cinza-fundo);
+  width: 70%;
+  background-color: var(--hydro-bg-main);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -148,81 +129,34 @@
 }
 
 .texto-passo {
-  color: var(--cinza-muted);
+  color: var(--hydro-text-muted);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .titulo-pagina {
-  color: var(--preto-texto);
+  color: var(--hydro-text-primary);
   font-size: 44px;
   font-weight: 800;
   margin: 10px 0 40px 0;
   letter-spacing: -1px;
+  font-family: var(--font-display);
 }
 
 .titulo-secao {
-  color: var(--cinza-muted);
+  color: var(--hydro-text-muted);
   font-size: 11px;
   font-weight: 700;
   margin-bottom: 15px;
-  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.grade-perfis {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 40px;
-}
-
-/* Botões de Perfil */
-.botao-perfil {
-  flex: 1;
-  background-color: var(--branco-puro);
-  border: 1px solid var(--borda-padrao);
-  border-radius: 8px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  color: var(--preto-texto); 
-  font-family: var(--font-body);
-  font-weight: 500;
-}
-
-.botao-perfil:hover {
-  border-color: var(--vermelho-acao);
-  transform: translateY(-2px);
-}
-
-.botao-perfil.ativo {
-  background-color: var(--vermelho-critico); 
-  border-color: var(--vermelho-critico);
-  color: var(--branco-puro); 
-  transform: none;
-}
-
-.botao-perfil .icone-perfil {
-  color: var(--preto-texto); 
-  margin-bottom: 8px;
-  display: flex;
-}
-
-.botao-perfil.ativo .icone-perfil {
-  color: var(--branco-puro); 
-}
-
-.legenda-perfil {
-  font-size: 11px;
-  font-weight: 700;
-}
-
-/* =========================================
-   ESTRUTURA DO FORMULÁRIO
-   ========================================= */
+/* =====================================================
+   FORMULÁRIO
+   ===================================================== */
 .formulario-corpo {
   display: flex;
   flex-direction: column;
@@ -242,32 +176,152 @@
 }
 
 .campo-entrada label {
-  color: var(--cinza-muted);
+  color: var(--hydro-text-muted);
   font-size: 10px;
   font-weight: 700;
   margin-bottom: 5px;
   font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .campo-entrada input {
   background: transparent;
   border: none;
-  border-bottom: 2px solid var(--borda-padrao);
+  border-bottom: 2px solid var(--hydro-border);
   padding: 10px 0;
   font-size: 16px;
   outline: none;
-  color: var(--preto-texto);
+  color: var(--hydro-text-primary);
   transition: border-color 0.2s;
   font-family: var(--font-body);
 }
 
 .campo-entrada input:focus {
-  border-bottom-color: var(--vermelho-acao);
+  border-bottom-color: var(--hydro-action);
 }
 
-/* =========================================
-   RODAPÉ DO FORMULÁRIO (BOTÕES FINAIS)
-   ========================================= */
+/* Inputs com ícone lateral */
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid var(--hydro-border);
+  transition: border-color 0.2s;
+}
+
+.input-with-icon:focus-within {
+  border-bottom-color: var(--hydro-action);
+}
+
+.input-with-icon svg {
+  color: var(--hydro-text-muted);
+  flex-shrink: 0;
+}
+
+.container-input-linha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid var(--hydro-border);
+  transition: border-color 0.2s;
+}
+
+.container-input-linha:focus-within {
+  border-bottom-color: var(--hydro-action);
+}
+
+.container-input-linha input,
+.container-input-linha select {
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  width: 100%;
+  outline: none;
+  color: var(--hydro-text-primary);
+  font-size: 16px;
+  font-family: var(--font-body);
+}
+
+/* Select e Textarea */
+.select-custom,
+.textarea-custom {
+  color: var(--hydro-text-primary);
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+.select-custom {
+  padding: 10px 0;
+  border-bottom: 2px solid var(--hydro-border);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.select-custom:focus {
+  border-bottom-color: var(--hydro-action);
+}
+
+/* =====================================================
+   SELEÇÃO DE PERFIL (cards)
+   ===================================================== */
+.grade-perfis {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.botao-perfil {
+  flex: 1;
+  background-color: var(--hydro-bg-card);
+  border: 1px solid var(--hydro-border);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: var(--hydro-text-primary);
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+.botao-perfil:hover {
+  border-color: var(--hydro-action);
+  transform: translateY(-2px);
+}
+
+.botao-perfil.ativo {
+  background-color: var(--hydro-critical);
+  border-color: var(--hydro-critical);
+  color: var(--hydro-bg-card);
+  transform: none;
+}
+
+.botao-perfil .icone-perfil {
+  color: var(--hydro-text-primary);
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.botao-perfil.ativo .icone-perfil {
+  color: var(--hydro-bg-card);
+}
+
+.legenda-perfil {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* =====================================================
+   RODAPÉ DO FORMULÁRIO (botões de ação)
+   ===================================================== */
 .acoes-formulario {
   display: flex;
   align-items: center;
@@ -276,22 +330,24 @@
 }
 
 .botao-acao-principal {
-  background-color: var(--vermelho-acao);
-  color: white;
+  background-color: var(--hydro-action);
+  color: var(--hydro-bg-card);
   border: none;
   border-radius: 4px;
   padding: 18px 40px;
   font-size: 14px;
+  font-weight: 700;
   letter-spacing: 1px;
+  text-transform: uppercase;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(217, 4, 41, 0.2);
-  transition: filter 0.2s;
+  transition: filter 0.2s, transform 0.2s;
   font-family: var(--font-display);
-  font-weight: 700;
 }
 
 .botao-acao-principal:hover {
   filter: brightness(1.1);
+  transform: translateY(-1px);
 }
 
 .bloco-login {
@@ -301,117 +357,56 @@
 }
 
 .pergunta-login {
-  color: var(--cinza-muted);
+  color: var(--hydro-text-muted);
   font-size: 12px;
 }
 
 .botao-acao-secundario {
   background: none;
   border: none;
-  color: var(--vermelho-acao);
+  color: var(--hydro-action);
   font-size: 12px;
   font-weight: 700;
   text-decoration: underline;
   cursor: pointer;
   padding: 0;
   transition: filter 0.2s;
+  font-family: var(--font-body);
 }
 
 .botao-acao-secundario:hover {
   filter: brightness(1.2);
 }
 
-/* =========================================
-   INPUTS COM ÍCONE (Da sua branch - Para o Identifier)
-   ========================================= */
-.input-with-icon {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 2px solid rgba(73, 80, 87, 0.2);
-}
-
-.input-with-icon svg {
-  color: #6C757D;
-}
-
-.select-custom, 
-.textarea-custom,
-.campo-entrada input {
-  color: #212529 !important;
-  width: 100%;
-  background: transparent;
-  border: none;
-  outline: none;
-}
-
-.select-custom {
-  padding: 10px 0;
-  border-bottom: 2px solid rgba(73, 80, 87, 0.2);
-  cursor: pointer;
-}
-
-/* =========================================
-   COMPONENTES NOVOS (Da branch Develop - Para o Register)
-   ========================================= */
-
-/* Estilização das Sugestões de Clubes */
+/* =====================================================
+   SUGESTÕES DE CLUBES (autocomplete)
+   ===================================================== */
 .sugestoes-clubes {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--branco-puro);
-  border: 1px solid var(--borda-padrao);
-  border-top: none;
+  background: var(--hydro-bg-card);
+  border: 1px solid var(--hydro-border);
+  border-radius: 0 0 6px 6px;
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
   max-height: 150px;
   overflow-y: auto;
   z-index: 10;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .sugestoes-clubes li {
-  padding: 10px;
+  padding: 10px 15px;
   font-size: 13px;
-  color: var(--preto-texto);
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.15s;
 }
 
 .sugestoes-clubes li:hover {
-  background-color: var(--cinza-fundo);
-  color: var(--vermelho-acao);
+  background-color: var(--hydro-bg-main);
+  color: var(--hydro-action);
 }
 
-/* Container que agrupa Ícone + Input e cria a linha vermelha/cinza embaixo */
-.container-input-linha {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 2px solid rgba(73, 80, 87, 0.2); /* Borda padrão */
-  transition: border-color 0.2s;
-}
-
-.container-input-linha:focus-within {
-  border-bottom-color: #D90429; /* Fica vermelho ao clicar */
-}
-
-.container-input-linha input, 
-.container-input-linha select {
-  border: none !important; /* Remove a borda individual para usar a do container */
-  background: transparent;
-  padding: 10px 0;
-  width: 100%;
-  outline: none;
-  color: #212529; /* Texto Preto */
-  font-size: 16px;
-}
-
-.select-registro {
-  cursor: pointer;
-  appearance: none; /* Remove seta padrão do navegador se quiser */
-}

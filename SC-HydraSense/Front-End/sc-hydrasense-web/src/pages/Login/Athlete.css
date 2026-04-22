@@ -1,0 +1,212 @@
+/* =====================================================
+   ATHLETE.CSS — Tela de cadastro de atleta
+   Depende de: index.css (variáveis globais)
+   ===================================================== */
+
+.tela-atleta-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-main);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Barras laterais decorativas */
+.barra-vinho {
+  position: absolute;
+  top: 0;
+  width: 90px;
+  height: 100%;
+  background-color: var(--cor-vermelho-critico);
+  z-index: 5;
+}
+
+.barra-vinho.esquerda { left: 0; }
+.barra-vinho.direita  { right: 0; }
+
+/* Container central */
+.container-atleta-distribuido {
+  width: 100%;
+  max-width: 1100px;
+  z-index: 10;
+  padding: 50px 80px 0 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cabeçalho */
+.header-atleta {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.label-passo {
+  color: var(--cor-texto-muted);
+  font-size: 14px;
+  font-weight: 800;
+  font-family: var(--font-body);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.titulo-hero-atleta {
+  font-size: 52px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--cor-texto-principal);
+  margin-top: 15px;
+  letter-spacing: -1.5px;
+}
+
+/* Grid de inputs */
+.form-atleta-full {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.grid-campos-atleta {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+}
+
+.bloco-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bloco-input label {
+  font-size: 11px;
+  font-weight: 800;
+  font-family: var(--font-body);
+  color: var(--cor-texto-muted);
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Input estilizado */
+.wrapper-input-atleta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 18px 25px;
+  transition: border-color 0.2s;
+}
+
+.wrapper-input-atleta:focus-within {
+  border-color: var(--cor-vermelho-acao);
+}
+
+.wrapper-input-atleta input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 18px;
+  font-family: var(--font-body);
+  outline: none;
+  color: var(--cor-texto-principal);
+}
+
+.wrapper-input-atleta svg {
+  color: var(--cor-texto-muted);
+  flex-shrink: 0;
+}
+
+/* Erro de validação */
+.wrapper-input-atleta.input-error {
+  border-color: var(--cor-vermelho-acao);
+}
+
+.mensagem-erro-email {
+  color: var(--cor-vermelho-acao);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Avisos informativos */
+.container-avisos-central {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.texto-informativo-atleta {
+  font-size: 14px;
+  font-family: var(--font-body);
+  color: var(--cor-texto-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Navegação vertical */
+.navegacao-vertical-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.seta-v-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  line-height: 0;
+  transition: color 0.2s;
+}
+
+.seta-v-btn.ativa {
+  color: var(--cor-vermelho-acao);
+}
+
+.seta-v-btn.desativada {
+  color: var(--cor-texto-muted);
+  opacity: 0.2;
+  cursor: default;
+}
+
+.ponto-estilo-minimal {
+  width: 6px;
+  height: 6px;
+  background-color: var(--cor-borda);
+  border-radius: 50%;
+  margin: 2px 0;
+}
+
+.link-voltar-atleta {
+  background: none;
+  border: none;
+  color: var(--cor-texto-muted);
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 15px;
+  align-self: center;
+  transition: color 0.2s;
+}
+
+.link-voltar-atleta:hover {
+  color: var(--cor-vermelho-acao);
+}
