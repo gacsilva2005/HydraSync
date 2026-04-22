@@ -8,31 +8,36 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Getter
+@Setter
 @Entity
+@Table(name = "profissional")
 public class Profissional {
 
-    // Getters e Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter
     private String nome;
 
-    @Setter
-    private String registroProfissional;
-
-    @Setter
+    private String registro;
+    private String uf;
     private String especialidade;
+    private String clube;
+    private String perfil;
 
-    // Relacionamento 1:M com Atleta
+    private String email;
+    private String telefone;
+    private String senha;
+
+    @Column(length = 300)
+    private String resumo;
+
     @OneToMany(mappedBy = "profissional", cascade = CascadeType.ALL)
     private List<Atleta> atletas = new ArrayList<>();
 
-    // Construtor padrão JPA
-    public Profissional() {}
+    public Profissional() {
+    }
 
-    // Métodos
     public void vincularAtleta(Atleta atleta) {
         atletas.add(atleta);
         atleta.setProfissional(this);

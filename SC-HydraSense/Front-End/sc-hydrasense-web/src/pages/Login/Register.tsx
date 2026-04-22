@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Microscope, Utensils, Activity, BriefcaseMedical, MapPin, Award, User, Hash, Trophy } from 'lucide-react';
 import './Login.css';
-// Removido o import do Register.css pois unificamos tudo no Login.css no passo anterior
 
 const PERFIS = [
   { id: 'nutricionista', rotulo: 'NUTRICIONISTA', icone: <Utensils size={24} /> },
@@ -34,13 +33,29 @@ export function Register() {
   const [buscaClube, setBuscaClube] = useState('');
   const [mostrarSugestoes, setMostrarSugestoes] = useState(false);
 
+  const [formData, setFormData] = useState({
+    nome: '',
+    registro: '',
+    uf: '',
+    especialidade: '',
+    clube: '',
+    perfil: perfilAtivo
+  });
+
   const clubesFiltrados = CLUBES_DISPONIVEIS.filter(clube =>
     clube.toLowerCase().includes(buscaClube.toLowerCase())
   );
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/identificador');
+    navigate('/identificador', {
+      state: { ...formData, perfil: perfilAtivo }
+    });
   };
 
   return (
@@ -93,7 +108,10 @@ export function Register() {
                 key={perfil.id}
                 type="button"
                 className={`botao-perfil ${perfilAtivo === perfil.id ? 'ativo' : ''}`}
-                onClick={() => setPerfilAtivo(perfil.id)}
+                onClick={() => {
+                  setPerfilAtivo(perfil.id);
+                  setFormData(prev => ({ ...prev, perfil: perfil.id }));
+                }}
               >
                 <span className="icone-perfil">{perfil.icone}</span>
                 <span className="legenda-perfil">{perfil.rotulo}</span>
@@ -107,7 +125,14 @@ export function Register() {
             <label>NOME COMPLETO</label>
             <div className="container-input-linha">
               <User size={18} color="#6C757D" />
-              <input type="text" placeholder="Nome Completo" required />
+              <input
+                type="text"
+                name="nome"
+                placeholder="Nome Completo"
+                value={formData.nome}
+                onChange={handleChange}
+                required
+              />
             </div>
           </div>
 
@@ -116,7 +141,14 @@ export function Register() {
               <label>REGISTRO PROFISSIONAL (CRN/CRM/CREF)</label>
               <div className="container-input-linha">
                 <Hash size={18} color="#6C757D" />
-                <input type="text" placeholder="Ex: CRM-224578" required />
+                <input
+                  type="text"
+                  name="registro"
+                  placeholder="Ex: CRM-12345"
+                  value={formData.registro}
+                  onChange={handleChange}
+                  required
+                />
               </div>
             </div>
 
@@ -124,7 +156,13 @@ export function Register() {
               <label>UF DA FILIAÇÃO</label>
               <div className="container-input-linha">
                 <MapPin size={18} color="#6C757D" />
-                <select required className="select-registro" defaultValue="">
+                <select
+                  required
+                  name="uf"
+                  className="select-registro"
+                  value={formData.uf}
+                  onChange={handleChange}
+                >
                   <option value="" disabled>Selecione</option>
                   {UFS.map(uf => <option key={uf} value={uf}>{uf}</option>)}
                 </select>
@@ -137,7 +175,14 @@ export function Register() {
               <label>ESPECIALIDADE</label>
               <div className="container-input-linha">
                 <Award size={18} color="#6C757D" />
-                <input type="text" placeholder="Ex: Fisiologia" required />
+                <input
+                  type="text"
+                  name="especialidade"
+                  placeholder="Ex: Fisiologia"
+                  value={formData.especialidade}
+                  onChange={handleChange}
+                  required
+                />
               </div>
             </div>
 
@@ -152,6 +197,7 @@ export function Register() {
                   onChange={(e) => {
                     setBuscaClube(e.target.value);
                     setMostrarSugestoes(true);
+                    setFormData({ ...formData, clube: e.target.value });
                   }}
                   onFocus={() => setMostrarSugestoes(true)}
                   required
@@ -163,6 +209,7 @@ export function Register() {
                   {clubesFiltrados.map((clube) => (
                     <li key={clube} onClick={() => {
                       setBuscaClube(clube);
+                      setFormData({ ...formData, clube });
                       setMostrarSugestoes(false);
                     }}>{clube}</li>
                   ))}
@@ -175,7 +222,6 @@ export function Register() {
             <button type="submit" className="botao-acao-principal">
               PRÓXIMO PASSO
             </button>
-
             <div className="bloco-login">
               <span className="pergunta-login">Já tem uma conta?</span>
               <button type="button" className="botao-acao-secundario" onClick={() => navigate('/')}>
