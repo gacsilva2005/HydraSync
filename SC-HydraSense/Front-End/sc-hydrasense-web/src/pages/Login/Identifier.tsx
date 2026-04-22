@@ -1,11 +1,13 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Rocket, Mail, Phone, Lock, Camera, FileText, User, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import './Login.css';
 import './Identifier.css';
 
 export function Identifier() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const dadosRegistro = location.state;
   const [concordaTermos, setConcordaTermos] = useState(false);
   const [receberAtualizacoes, setReceberAtualizacoes] = useState(false);
   const [fotoPreview, setFotoPreview] = useState<string | null>(null);
@@ -19,6 +21,23 @@ export function Identifier() {
   // Validação visual de senha em tempo real
   const erroSenha = confirmarSenha.length > 0 && senha !== confirmarSenha;
 
+  const [dadosAcesso, setDadosAcesso] = useState({
+      email: '',
+      telefone: '',
+      senha: '',
+      resumo: ''
+  });
+
+  const handleChange = (
+      e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+      const { name, value } = e.target;
+      setDadosAcesso(prev => ({
+          ...prev,
+          [name]: value
+      }));
+  };
+
   const handleFotoChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -28,15 +47,41 @@ export function Identifier() {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (senha !== confirmarSenha) return;
-    if (!concordaTermos) {
-      alert("Você precisa concordar com os termos para continuar.");
-      return;
-    }
-    alert("Cadastro concluído!");
-  };
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+
+        if (senha !== confirmarSenha) return;
+
+        if (!concordaTermos) {
+            alert("Você precisa concordar com os termos.");
+            return;
+        }
+
+        const dadosCompletos = {
+            ...dadosRegistro,
+            ...dadosAcesso
+        };
+
+        try {
+            const response = await fetch('http://localhost:8080/profissionais', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dadosCompletos)
+            });
+
+            if (response.ok) {
+                alert('Cadastro realizado com sucesso!');
+                navigate('/');
+            } else {
+                alert('Erro ao cadastrar.');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Erro ao conectar com o servidor.');
+        }
+    };
 
   return (
     <div className="tela-registro">
@@ -86,14 +131,28 @@ export function Identifier() {
               <label>E-MAIL PROFISSIONAL</label>
               <div className="input-with-icon">
                 <Mail size={18} />
-                <input type="email" placeholder="seu@email.com" required />
+                  <input
+                      type="email"
+                      name="email"
+                      placeholder="seu@email.com"
+                      value={dadosAcesso.email}
+                      onChange={handleChange}
+                      required
+                  />
               </div>
             </div>
             <div className="campo-entrada">
               <label>CONTATO PROFISSIONAL</label>
               <div className="input-with-icon">
                 <Phone size={18} />
-                <input type="tel" placeholder="(00) 00000-0000" required />
+                  <input
+                      type="tel"
+                      name="telefone"
+                      placeholder="(00) 00000-0000"
+                      value={dadosAcesso.telefone}
+                      onChange={handleChange}
+                      required
+                  />
               </div>
             </div>
           </div>
@@ -103,12 +162,19 @@ export function Identifier() {
                 <label>SENHA DE ACESSO</label>
                 <div className={`input-with-icon ${erroSenha ? 'erro' : ''}`}>
                     <Lock size={18} />
-                    <input 
-                      type={verSenha ? "text" : "password"} 
-                      placeholder="••••••••" 
-                      value={senha}
-                      onChange={(e) => setSenha(e.target.value)}
-                      required 
+                    <input
+                        type={verSenha ? "text" : "password"}
+                        name="senha"
+                        placeholder="••••••••"
+                        value={senha}
+                        onChange={(e) => {
+                            setSenha(e.target.value);
+                            setDadosAcesso(prev => ({
+                                ...prev,
+                                senha: e.target.value
+                            }));
+                        }}
+                        required
                     />
                     <button type="button" className="botao-olhinho" onClick={() => setVerSenha(!verSenha)}>
                       {verSenha ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -157,14 +223,21 @@ export function Identifier() {
             <label>RESUMO ({resumo.length}/300 CARACTERES)</label>
             <div className="input-with-icon" style={{ alignItems: 'flex-start' }}>
               <FileText size={18} style={{ marginTop: '10px' }} />
-              <textarea 
-                placeholder="Conte um pouco sobre sua trajetória profissional..." 
-                rows={3}
-                maxLength={300}
-                className="textarea-custom"
-                value={resumo}
-                onChange={(e) => setResumo(e.target.value)}
-              ></textarea>
+                <textarea
+                    name="resumo"
+                    placeholder="Conte um pouco sobre sua trajetória profissional..."
+                    rows={3}
+                    maxLength={300}
+                    className="textarea-custom"
+                    value={resumo}
+                    onChange={(e) => {
+                        setResumo(e.target.value);
+                        setDadosAcesso(prev => ({
+                            ...prev,
+                            resumo: e.target.value
+                        }));
+                    }}
+                ></textarea>
             </div>
           </div>
 
