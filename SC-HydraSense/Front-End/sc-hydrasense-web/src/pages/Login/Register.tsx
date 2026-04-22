@@ -144,6 +144,7 @@ export function Register() {
               <User size={18} color="#6C757D" />
                 <input
                     type="text"
+                    name="nome"
                     placeholder="Nome Completo"
                     value={formData.nome}
                     onChange={handleChange}
@@ -160,6 +161,7 @@ export function Register() {
                 <Hash size={18} color="#6C757D" />
                   <input
                       type="text"
+                      name="registro"
                       placeholder="Ex: CRM-12345"
                       value={formData.registro}
                       onChange={handleChange}
@@ -172,10 +174,11 @@ export function Register() {
               <label>UF DA FILIAÇÃO</label>
               <div className="container-input-linha">
                 <MapPin size={18} color="#6C757D" />
-                {/* Corrigido o erro de selected do React usando defaultValue */}
+
                   <select
                       required
                       className="select-registro"
+                      name="uf"
                       value={formData.uf}
                       onChange={handleChange}
                   >
@@ -186,7 +189,6 @@ export function Register() {
             </div>
           </div>
 
-          {/* ESPECIALIDADE E CLUBE - Linha Dupla */}
           <div className="linha-dupla">
             <div className="campo-entrada">
               <label>ESPECIALIDADE</label>
@@ -194,6 +196,7 @@ export function Register() {
                 <Award size={18} color="#6C757D" />
                   <input
                       type="text"
+                      name="especialidade"
                       placeholder="Ex: Fisiologia"
                       value={formData.especialidade}
                       onChange={handleChange}
