@@ -120,7 +120,10 @@ export function Register() {
                 className={`botao-perfil ${perfilAtivo === perfil.id ? 'ativo' : ''}`}
                 onClick={() => {
                     setPerfilAtivo(perfil.id);
-                    setFormData({ ...formData, perfil: perfil.id });
+                    setFormData(prev => ({
+                        ...prev,
+                        perfil: perfil.id
+                    }));
                 }}
               >
                 <span className="icone-perfil">{perfil.icone}</span>
