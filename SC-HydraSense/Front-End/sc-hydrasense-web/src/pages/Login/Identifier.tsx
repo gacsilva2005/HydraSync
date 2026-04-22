@@ -1,6 +1,8 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { useState, type ChangeEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Rocket, Mail, Phone, Lock, Camera, FileText, User, Eye, EyeOff, AlertCircle } from 'lucide-react';
+
+// Importando a estrutura modular nova do seu amigo
 import './Login.css';
 import './Identifier.css';
 
@@ -15,9 +17,16 @@ export function Identifier() {
   const [confirmarSenha, setConfirmarSenha] = useState('');
   const [verSenha, setVerSenha] = useState(false);
   const [verConfirmarSenha, setVerConfirmarSenha] = useState(false);
+  const [erroSenha, setErroSenha] = useState(false);
 
-  // Validação visual de senha em tempo real
-  const erroSenha = confirmarSenha.length > 0 && senha !== confirmarSenha;
+  // Sua validação visual de senha em tempo real mantida!
+  useEffect(() => {
+    if (confirmarSenha.length > 0 && senha !== confirmarSenha) {
+      setErroSenha(true);
+    } else {
+      setErroSenha(false);
+    }
+  }, [senha, confirmarSenha]);
 
   const handleFotoChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -28,18 +37,18 @@ export function Identifier() {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (senha !== confirmarSenha) return;
     if (!concordaTermos) {
       alert("Você precisa concordar com os termos para continuar.");
       return;
     }
-    alert("Cadastro concluído!");
+    navigate('/equipe');
   };
 
   return (
-    <div className="tela-registro">
+    <div className="tela-registro layout-reverso">
       <aside className="painel-lateral">
         <div className="lateral-topo">
           <h2 className="lateral-titulo">SÃO CAMILO WEB</h2>
@@ -85,14 +94,14 @@ export function Identifier() {
             <div className="campo-entrada">
               <label>E-MAIL PROFISSIONAL</label>
               <div className="input-with-icon">
-                <Mail size={18} />
+                <Mail size={18} color="#6C757D" />
                 <input type="email" placeholder="seu@email.com" required />
               </div>
             </div>
             <div className="campo-entrada">
               <label>CONTATO PROFISSIONAL</label>
               <div className="input-with-icon">
-                <Phone size={18} />
+                <Phone size={18} color="#6C757D" />
                 <input type="tel" placeholder="(00) 00000-0000" required />
               </div>
             </div>
@@ -102,7 +111,7 @@ export function Identifier() {
             <div className="campo-entrada">
                 <label>SENHA DE ACESSO</label>
                 <div className={`input-with-icon ${erroSenha ? 'erro' : ''}`}>
-                    <Lock size={18} />
+                    <Lock size={18} color="#6C757D" />
                     <input 
                       type={verSenha ? "text" : "password"} 
                       placeholder="••••••••" 
@@ -118,7 +127,7 @@ export function Identifier() {
             <div className="campo-entrada">
                 <label>CONFIRMAR SENHA</label>
                 <div className={`input-with-icon ${erroSenha ? 'erro' : ''}`}>
-                    <Lock size={18} />
+                    <Lock size={18} color="#6C757D" />
                     <input 
                       type={verConfirmarSenha ? "text" : "password"} 
                       placeholder="••••••••" 
@@ -131,7 +140,9 @@ export function Identifier() {
                     </button>
                 </div>
                 {erroSenha && (
-                  <span className="msg-erro"><AlertCircle size={12} /> As senhas não coincidem</span>
+                  <span className="msg-erro" style={{ color: '#D90429', fontSize: '10px', marginTop: '5px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <AlertCircle size={12} /> As senhas não coincidem
+                  </span>
                 )}
             </div>
           </div>
@@ -140,7 +151,7 @@ export function Identifier() {
             <div className="campo-entrada" style={{ flex: 2 }}>
               <label>FOTO DE PERFIL (OPCIONAL)</label>
               <div className="input-with-icon">
-                <Camera size={18} />
+                <Camera size={18} color="#6C757D" />
                 <input type="file" accept="image/*" className="file-input" onChange={handleFotoChange} />
               </div>
             </div>
@@ -148,7 +159,9 @@ export function Identifier() {
                {fotoPreview ? (
                  <img src={fotoPreview} alt="Preview" className="foto-3x4" />
                ) : (
-                 <div className="foto-placeholder-3x4"><User size={28} /></div>
+                 <div className="foto-placeholder-3x4" style={{ width: '60px', height: '80px', background: '#e9ecef', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '4px' }}>
+                   <User size={28} color="#adb5bd" />
+                 </div>
                )}
             </div>
           </div>
@@ -156,7 +169,7 @@ export function Identifier() {
           <div className="campo-entrada">
             <label>RESUMO ({resumo.length}/300 CARACTERES)</label>
             <div className="input-with-icon" style={{ alignItems: 'flex-start' }}>
-              <FileText size={18} style={{ marginTop: '10px' }} />
+              <FileText size={18} color="#6C757D" style={{ marginTop: '10px' }} />
               <textarea 
                 placeholder="Conte um pouco sobre sua trajetória profissional..." 
                 rows={3}
@@ -164,22 +177,23 @@ export function Identifier() {
                 className="textarea-custom"
                 value={resumo}
                 onChange={(e) => setResumo(e.target.value)}
+                style={{ width: '100%', border: 'none', outline: 'none', padding: '10px 0', background: 'transparent' }}
               ></textarea>
             </div>
           </div>
 
-          <div className="secao-termos">
-            <label className="checkbox-label">
+          <div className="secao-termos" style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <label className="checkbox-label" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', cursor: 'pointer' }}>
                 <input type="checkbox" checked={receberAtualizacoes} onChange={() => setReceberAtualizacoes(!receberAtualizacoes)} />
                 Concordo em receber atualizações via e-mail.
             </label>
-            <label className="checkbox-label">
+            <label className="checkbox-label" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', cursor: 'pointer' }}>
                 <input type="checkbox" required checked={concordaTermos} onChange={() => setConcordaTermos(!concordaTermos)} />
                 Concordo com os Termos de Uso e Privacidade.
             </label>
           </div>
 
-          <footer className="acoes-formulario">
+          <footer className="acoes-formulario" style={{ marginTop: '30px', display: 'flex', alignItems: 'center', gap: '20px' }}>
             <button type="submit" className="botao-acao-principal">FINALIZAR CADASTRO</button>
             <button type="button" className="botao-acao-secundario" onClick={() => navigate('/registro')}>Voltar</button>
           </footer>

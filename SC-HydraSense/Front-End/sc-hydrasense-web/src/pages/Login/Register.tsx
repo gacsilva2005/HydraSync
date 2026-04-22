@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Microscope, Utensils, Activity, BriefcaseMedical, MapPin, Award, User, Hash, Trophy } from 'lucide-react';
 import './Login.css';
-import './Register.css';
+// Removido o import do Register.css pois unificamos tudo no Login.css no passo anterior
 
 const PERFIS = [
   { id: 'nutricionista', rotulo: 'NUTRICIONISTA', icone: <Utensils size={24} /> },
@@ -40,13 +40,11 @@ export function Register() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Ajustado para usar a sua nova rota padrão
     navigate('/identificador');
   };
 
   return (
     <div className="tela-registro">
-
       <aside className="painel-lateral">
         <div className="lateral-topo">
           <h2 className="lateral-titulo">SÃO CAMILO WEB</h2>
@@ -105,8 +103,6 @@ export function Register() {
         </section>
 
         <form className="formulario-corpo" onSubmit={handleSubmit}>
-
-          {/* NOME COMPLETO - Linha Única */}
           <div className="campo-entrada">
             <label>NOME COMPLETO</label>
             <div className="container-input-linha">
@@ -115,13 +111,12 @@ export function Register() {
             </div>
           </div>
 
-          {/* REGISTRO E UF - Linha Dupla */}
           <div className="linha-dupla">
             <div className="campo-entrada">
               <label>REGISTRO PROFISSIONAL (CRN/CRM/CREF)</label>
               <div className="container-input-linha">
                 <Hash size={18} color="#6C757D" />
-                <input type="text" placeholder="Ex: CRM-12345" required />
+                <input type="text" placeholder="Ex: CRM-224578" required />
               </div>
             </div>
 
@@ -129,7 +124,6 @@ export function Register() {
               <label>UF DA FILIAÇÃO</label>
               <div className="container-input-linha">
                 <MapPin size={18} color="#6C757D" />
-                {/* Corrigido o erro de selected do React usando defaultValue */}
                 <select required className="select-registro" defaultValue="">
                   <option value="" disabled>Selecione</option>
                   {UFS.map(uf => <option key={uf} value={uf}>{uf}</option>)}
@@ -138,7 +132,6 @@ export function Register() {
             </div>
           </div>
 
-          {/* ESPECIALIDADE E CLUBE - Linha Dupla */}
           <div className="linha-dupla">
             <div className="campo-entrada">
               <label>ESPECIALIDADE</label>

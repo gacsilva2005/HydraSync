@@ -1,7 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
+
 import { Register } from './pages/Login/Register';
 import { Identifier } from './pages/Login/Identifier';
+import { Team } from './pages/Login/Team';
+import { Athlete } from './pages/Login/Athlete';
 import { PageWeb } from './pages/PaginasSite/PageWeb';
 import { Atletas } from './pages/PaginasSite/Atletas';
 import { Dashboard } from './pages/PaginasSite/Dashboard';
@@ -15,7 +18,10 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/registro" element={<Register />} />
       <Route path="/identificador" element={<Identifier />} />
+      <Route path="/equipe" element={<Team />} />
+      <Route path="/athlete" element={<Athlete />} />
 
+      {/* Suas rotas do Painel Web */}
       <Route path="/PageWeb" element={<PageWeb />}>
         <Route index element={<Dashboard />} />
         <Route path="atletas" element={<Atletas />} />

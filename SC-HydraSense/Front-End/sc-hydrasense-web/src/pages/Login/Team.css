@@ -1,0 +1,249 @@
+/* =====================================================
+   TEAM.CSS — Tela de seleção/cadastro de equipe
+   Depende de: index.css (variáveis globais)
+   ATENÇÃO: .texto-passo e .titulo-pagina que existem
+   aqui também em Login.css foram unificados — use
+   .cabecalho-fluxo como wrapper para escopo correto.
+   ===================================================== */
+
+.tela-registro-full {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-main);
+  overflow: hidden;
+}
+
+.painel-principal-central {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 80px;
+  box-sizing: border-box;
+}
+
+/* Cabeçalho do fluxo (scoped para evitar conflito com Login.css) */
+.cabecalho-fluxo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cabecalho-fluxo .texto-passo {
+  color: var(--cor-texto-muted);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cabecalho-fluxo .titulo-pagina {
+  font-size: 42px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--cor-texto-principal);
+  margin: 10px 0 0 0;
+  letter-spacing: -1px;
+}
+
+/* Card de seleção */
+.card-selecao-equipe {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.modal-equipe {
+  background-color: var(--bg-card);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Botão primário da equipe */
+.botao-equipe-primario {
+  background-color: var(--cor-vermelho-acao);
+  color: var(--cor-branco);
+  border: none;
+  border-radius: 6px;
+  padding: 18px;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.2s;
+}
+
+.botao-equipe-primario:hover {
+  filter: brightness(0.9);
+  transform: translateY(-1px);
+}
+
+.btn-confirmar-codigo {
+  margin-top: 25px;
+}
+
+/* Botão avançar */
+.botao-avancar-fluxo {
+  background: transparent;
+  color: var(--cor-texto-muted);
+  border: none;
+  padding: 16px;
+  font-weight: 800;
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.botao-avancar-fluxo:hover {
+  color: var(--cor-vermelho-acao);
+}
+
+/* Botão voltar */
+.botao-voltar-limpo {
+  background: transparent;
+  border: none;
+  color: var(--cor-texto-muted);
+  font-size: 11px;
+  font-weight: 800;
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 5px 0;
+  width: fit-content;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+
+.botao-voltar-limpo:hover {
+  color: var(--cor-vermelho-acao);
+}
+
+/* Input de código */
+.input-codigo-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-main);
+  border: 2px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 12px 15px;
+  gap: 12px;
+  transition: border-color 0.2s;
+}
+
+.input-codigo-wrapper:focus-within {
+  border-color: var(--cor-vermelho-acao);
+}
+
+.input-codigo-equipe {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 22px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  outline: none;
+  color: var(--cor-texto-principal);
+  letter-spacing: 4px;
+}
+
+/* Divisor */
+.divisor-avancar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.linha-divisor {
+  flex: 1;
+  height: 1px;
+  background-color: var(--cor-borda);
+}
+
+/* =====================================================
+   BARRA DE PROGRESSO INFERIOR
+   ===================================================== */
+.progresso-footer-compacto {
+  background-color: var(--cor-vermelho-critico);
+  width: 100%;
+  padding: 30px 0;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+}
+
+.barra-progresso-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.fluxo-progresso-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.item-progresso {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.trilha-mini {
+  height: 4px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  transition: background-color 0.3s;
+}
+
+.trilha-mini.ativa {
+  background-color: var(--cor-branco);
+}
+
+.legenda-mini {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.legenda-mini.ativa {
+  color: var(--cor-branco);
+}
+
+.legenda-avancar {
+  font-size: 11px;
+  font-family: var(--font-body);
+  color: var(--cor-texto-muted);
+  text-align: center;
+  margin-top: 15px;
+}
