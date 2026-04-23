@@ -8,6 +8,43 @@ import logoFundo from '../assets/Logo-Fundo.png';
 export function Home() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [erro, setErro] = useState('');
+
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch("http://localhost:8080/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    senha
+                })
+            });
+
+            if (!response.ok) {
+                setErro("E-mail ou senha inválidos");
+                return;
+            }
+
+            const usuario = await response.json();
+
+            if (usuario.tipoUsuario === "PROFISSIONAL") {
+                navigate("/PageWeb");
+            } else if (usuario.tipoUsuario === "ATLETA") {
+                navigate("/painel-atleta");
+            }
+
+        } catch (error) {
+            setErro("Erro ao conectar ao servidor");
+            console.error(error);
+        }
+    };
 
   return (
     <div className="login-container">
@@ -39,11 +76,17 @@ export function Home() {
             <p>Insira suas credenciais técnicas para autenticação.</p>
           </header>
 
-          <form className="login-form" onSubmit={(e) => { e.preventDefault(); navigate('/PageWeb'); }}>
+            <form className="login-form" onSubmit={handleLogin}>
             <div className="input-group">
               <label>ENDEREÇO DE E-MAIL</label>
               <div className="input-field">
-                <input type="email" placeholder="nome@performance.com" required />
+                  <input
+                      type="email"
+                      placeholder="nome@performance.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                  />
                 <Mail size={18} color="#6C757D" />
               </div>
             </div>
@@ -51,11 +94,13 @@ export function Home() {
             <div className="input-group">
               <label>SENHA DE ACESSO</label>
               <div className="input-field">
-                <input 
-                  type={showPassword ? "text" : "password"} 
-                  placeholder="••••••••" 
-                  required 
-                />
+                  <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="••••••••"
+                      value={senha}
+                      onChange={(e) => setSenha(e.target.value)}
+                      required
+                  />
                 <button 
                   type="button" 
                   className="btn-show-password"
@@ -76,7 +121,7 @@ export function Home() {
               </label>
               <button type="button" className="forgot-password">ESQUECI MINHA SENHA</button>
             </div>
-
+                {erro && <p style={{ color: 'red' }}>{erro}</p>}
             <button type="submit" className="btn-login-primary">
               ACESSAR PORTAL <ChevronRight size={18} />
             </button>
@@ -98,14 +143,6 @@ export function Home() {
               Novo no Hydra Sense? 
               <span onClick={() => navigate('/registro')} style={{cursor: 'pointer'}}> Solicitar acesso ao Painel</span>
             </p>
-            
-            {/* Botão de atalho para dev mantido temporariamente */}
-            <button 
-              onClick={() => navigate('/PageWeb')}
-              style={{ marginTop: '20px', padding: '5px', fontSize: '12px', background: 'transparent', border: '1px solid #ccc', cursor: 'pointer' }}
-            >
-              [Dev] Pular direto para o Painel Web
-            </button>
           </form>
         </div>
       </div>
