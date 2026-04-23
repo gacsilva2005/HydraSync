@@ -1,5 +1,6 @@
 package com.hydrasense.schydrasense.service;
 
+import com.hydrasense.schydrasense.model.LoginRequest;
 import com.hydrasense.schydrasense.model.Profissional;
 import com.hydrasense.schydrasense.repository.ProfissionalRepository;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,18 @@ public class ProfissionalService {
 
     public Optional<Profissional> login(String email, String senha) {
         return repository.findByEmailAndSenha(email, senha);
+    }
+
+    public Optional<Profissional> autenticar(LoginRequest request) {
+        Optional<Profissional> profissional =
+                repository.findByEmail(request.getEmail());
+
+        if (profissional.isPresent()) {
+            if (profissional.get().getSenha().equals(request.getSenha())) {
+                return profissional;
+            }
+        }
+
+        return Optional.empty();
     }
 }
