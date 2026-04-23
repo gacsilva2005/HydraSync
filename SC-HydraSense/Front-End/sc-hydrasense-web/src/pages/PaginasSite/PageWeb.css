@@ -6,6 +6,9 @@
     --hydro-action-hover: #641220;
     --hydro-attention: #FFD60A;
     --hydro-success: #289348;
+    --hydro-moderate: #c9601d;
+    --hydro-stable: #0b8a47;
+    --hydro-low: #1e6c93;
     --hydro-text-muted: #6C757D;
     --hydro-text-primary: #212529;
     --hydro-branco: #FFFFFF;
@@ -169,13 +172,15 @@
     display: flex;
     justify-content: space-between;
     /* Mudamos para flex-start para o botão não ficar "preso" no meio se o texto crescer */
-    align-items: flex-start; 
-    margin-bottom: 64px; /* Aumentado de 32px para 64px: empurra TUDO de baixo para longe */
+    align-items: flex-start;
+    margin-bottom: 64px;
+    /* Aumentado de 32px para 64px: empurra TUDO de baixo para longe */
 }
 
 /* Grupo de texto (Título + Subtítulo) */
 .atletas-header__info {
-    text-align: left; /* Garante que tudo dentro da div alinhe à esquerda */
+    text-align: left;
+    /* Garante que tudo dentro da div alinhe à esquerda */
 }
 
 .atletas-header__info h1 {
@@ -183,16 +188,19 @@
     margin: 0;
     font-family: var(--font-display);
     font-weight: 800;
-    line-height: 1; /* Diminui o espaço interno da linha do título */
+    line-height: 1;
+    /* Diminui o espaço interno da linha do título */
 }
 
 .atletas-header__info p {
-    margin-top: 30px; /* Aumentado: cria distância entre o h1 (Atletas) e o parágrafo */
+    margin-top: 30px;
+    /* Aumentado: cria distância entre o h1 (Atletas) e o parágrafo */
     margin-bottom: 0;
     color: var(--hydro-text-muted);
     font-family: var(--font-body);
     font-size: 16px;
-    max-width: 800px; /* Evita que o texto estique muito para a direita */
+    max-width: 800px;
+    /* Evita que o texto estique muito para a direita */
     line-height: 1.6;
 }
 
@@ -212,8 +220,11 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    /* Se quiser descer o botão especificamente, use a margem abaixo: */
-    margin-top: 70px; 
+}
+
+.btn-header-novo-atleta {
+    /* Desce o botão especificamente no header da listagem */
+    margin-top: 70px;
 }
 
 .btn-primary:hover {
@@ -231,4 +242,375 @@
     text-align: center;
     color: var(--hydro-text-muted);
     font-family: var(--font-body);
+}
+
+.filtros-container {
+    display: flex;
+    gap: 16px;
+    /* Espaçamento entre os filtros */
+    align-items: flex-start;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /* Faz as 4 colunas de dropdown terem o mesmo tamanho */
+    gap: 8px;
+}
+
+.filtro-busca {
+    flex: 1.5;
+    /* A barra de busca fica visivelmente mais larga, como na imagem */
+}
+
+/* Títulos dos Filtros */
+.filtro-grupo label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--hydro-critical);
+    /* Puxando o vinho escuro do seu root */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: var(--font-body);
+}
+
+/* Estilo Base para Inputs e Selects */
+.filtro-grupo select,
+.input-wrapper {
+    background-color: var(--hydro-bg-main);
+    /* Puxando o cinza claro do root */
+    border: none;
+    border-bottom: 2px solid var(--hydro-critical);
+    /* Borda vinho escuro */
+    border-radius: 4px 4px 0 0;
+    height: 42px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Customizando o elemento <select> */
+.filtro-grupo select {
+    width: 100%;
+    padding: 0 32px 0 12px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--hydro-text-primary);
+    cursor: pointer;
+    outline: none;
+
+    /* Remove a seta padrão e coloca uma customizada usando a cor muted (#6C757D) */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236C757D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+/* Wrapper da barra de busca */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 8px;
+}
+
+.icone-busca {
+    color: var(--hydro-critical);
+    /* Deixa a lupa com a mesma cor do texto/borda */
+}
+
+.input-wrapper input {
+    border: none;
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--hydro-text-primary);
+    outline: none;
+}
+
+.input-wrapper input::placeholder {
+    color: var(--hydro-text-muted);
+    /* Puxando o cinza do texto placeholder */
+}
+
+/* Efeitos de Hover e Focus */
+.filtro-grupo select:hover,
+.input-wrapper:hover {
+    /* Um cinza ligeiramente mais escuro que o bg-main para dar feedback tátil */
+    background-color: #EBECEF;
+}
+
+.filtro-grupo select:focus,
+.input-wrapper:focus-within {
+    background-color: #EBECEF;
+    border-bottom-color: var(--hydro-action);
+    /* Destaca com o vermelho de ação principal ao clicar */
+}
+
+/* =========================================
+   TABELA DE ATLETAS (MATCH COM A IMAGEM)
+   ========================================= */
+
+.atletas-tabela-container {
+    width: 100%;
+    margin-top: 20px;
+    background-color: var(--hydro-branco);
+    border-radius: 8px;
+    overflow: hidden; /* Garante que as bordas arredondadas funcionem */
+}
+
+.atletas-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+/* Estilo dos Cabeçalhos */
+.atletas-table th {
+    padding: 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    color: var(--hydro-action-hover); /* Usando o seu vinho escuro #641220 */
+    border-bottom: 1px solid var(--hydro-border);
+    font-family: var(--font-body);
+}
+
+/* Estilo da área vazia */
+.td-empty {
+    height: 300px; /* Altura para centralizar o aviso */
+    vertical-align: middle;
+    text-align: center;
+}
+
+.empty-state-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.empty-state-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--hydro-text-primary);
+    margin: 0;
+    font-family: var(--font-display);
+}
+
+.empty-state-subtitle {
+    font-size: 14px;
+    color: var(--hydro-text-muted);
+    margin: 0;
+    font-family: var(--font-body);
+}
+
+/* Ajuste fino para as colunas não ficarem grudadas */
+.atletas-table th, 
+.atletas-table td {
+    padding-left: 20px;
+}
+
+/* =========================================
+   ESTILOS DE LINHA E STATUS DA TABELA
+   ========================================= */
+
+.atletas-table tbody tr {
+  border-bottom: 1px solid var(--hydro-border);
+  height: 60px; /* Define uma altura padrão para as linhas */
+  transition: background-color 0.15s ease;
+}
+
+.atletas-table tbody tr:hover {
+  background-color: #fbfbfb; /* Feedback visual ao passar o mouse */
+}
+
+.atletas-table td {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--hydro-text-primary);
+  font-family: var(--font-body);
+}
+
+/* Formatação da Coluna do Atleta (Foto + Nome) */
+.td-atleta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--hydro-bg-main);
+  border: 1px solid var(--hydro-border);
+}
+
+.atleta-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.atleta-nome {
+  font-weight: 600;
+  color: var(--hydro-text-primary);
+}
+
+.atleta-id {
+  font-size: 12px;
+  color: var(--hydro-text-muted);
+}
+
+/* Formatação dos Status Badges */
+.td-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background-color: #fef1e8; /* Fundo suave para Moderado */
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #c9601d; /* Texto escuro para Moderado */
+  text-transform: uppercase;
+}
+
+/* Classes para cada tipo de Status (usando cores do root) */
+
+/* MODERADO */
+.td-status.moderado {
+  background-color: #fef1e8;
+}
+.td-status.moderado .status-dot {
+  background-color: var(--hydro-moderate);
+}
+.td-status.moderado .status-text {
+  color: #c9601d;
+}
+
+/* CRÍTICO */
+.td-status.critico {
+  background-color: #ffeaea;
+}
+.td-status.critico .status-dot {
+  background-color: var(--hydro-critical);
+}
+.td-status.critico .status-text {
+  color: #9d1b1b;
+}
+
+/* ESTÁVEL */
+.td-status.estavel {
+  background-color: #e8f9f0;
+}
+.td-status.estavel .status-dot {
+  background-color: var(--hydro-stable);
+}
+.td-status.estavel .status-text {
+  color: #0b8a47;
+}
+
+/* BAIXO */
+.td-status.baixo {
+  background-color: #ebf3f7;
+}
+.td-status.baixo .status-dot {
+  background-color: var(--hydro-low);
+}
+.td-status.baixo .status-text {
+  color: #1e6c93;
+}
+
+/* =========================================
+   ESTILOS DO FORMULÁRIO NOVO ATLETA
+   ========================================= */
+
+.novo-atleta-wrapper {
+    animation: fadeIn 0.3s ease;
+}
+
+.novo-atleta-form {
+    background-color: var(--hydro-branco);
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-top: 24px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas */
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    border-top: 1px solid var(--hydro-border);
+    padding-top: 24px;
+}
+
+.btn-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: var(--hydro-text-muted);
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 12px;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.btn-back:hover {
+    color: var(--hydro-critical);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--hydro-border);
+    color: var(--hydro-text-primary);
+    padding: 14px 28px; /* O mesmo padding do btn-primary */
+    border-radius: 6px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--hydro-bg-main);
+    border-color: var(--hydro-text-muted);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
