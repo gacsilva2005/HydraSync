@@ -31,4 +31,8 @@ public class ProfissionalService {
     public void deletar(Long id) {
         repository.deleteById(id);
     }
+
+    public Optional<Profissional> login(String email, String senha) {
+        return repository.findByEmailAndSenha(email, senha);
+    }
 }
