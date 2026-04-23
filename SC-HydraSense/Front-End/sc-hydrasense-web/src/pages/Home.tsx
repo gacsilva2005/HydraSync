@@ -16,7 +16,7 @@ export function Home() {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:8080/login", {
+            const response = await fetch("http://localhost:8080/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -32,12 +32,16 @@ export function Home() {
                 return;
             }
 
-            const usuario = await response.json();
+            const dados = await response.json();
 
-            if (usuario.tipoUsuario === "PROFISSIONAL") {
+            console.log("Login realizado:", dados);
+
+            if (dados.tipo === "profissional") {
                 navigate("/PageWeb");
-            } else if (usuario.tipoUsuario === "ATLETA") {
-                navigate("/painel-atleta");
+            } else if (dados.tipo === "atleta") {
+                navigate("/dashboardAtleta");
+            } else {
+                setErro("Tipo de usuário inválido");
             }
 
         } catch (error) {
