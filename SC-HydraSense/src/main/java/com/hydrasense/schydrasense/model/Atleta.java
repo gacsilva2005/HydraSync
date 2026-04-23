@@ -31,6 +31,11 @@ public class Atleta {
     @Column(nullable = false)
     private Float pesoAtual;
 
+    @Column(unique = true)
+    private String email;
+
+    private String senha;
+
     //Relação 1:M com Profissional
     @ManyToOne
     @JoinColumn(name = "profissional_id")
