@@ -25,8 +25,11 @@ public class Profissional {
     private String clube;
     private String perfil;
 
-    private String email;
     private String telefone;
+
+    @Column(unique = true)
+    private String email;
+
     private String senha;
 
     @Column(length = 300)
