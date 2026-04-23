@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, Unlock, ChevronRight, Globe, Apple, Droplet } from 'lucide-react';
+import { Mail, Lock, Unlock, ChevronRight, Globe, Apple, Droplet, X, AlertCircle, CheckCircle } from 'lucide-react';
 import './Home.css';
 
 import logoFundo from '../assets/Logo-Fundo.png';
@@ -10,53 +10,114 @@ export function Home() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [erro, setErro] = useState('');
 
-    const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault();
+  // Estado para controlar a notificação Toast
+  const [toast, setToast] = useState({
+    visible: false,
+    type: 'error', // 'error' ou 'success'
+    title: '',
+    message: ''
+  });
 
-        try {
-            const response = await fetch("http://localhost:8080/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email,
-                    senha
-                })
-            });
+  // Efeito para fechar o toast automaticamente após 3 segundos
+  useEffect(() => {
+    if (toast.visible) {
+      const timer = setTimeout(() => {
+        setToast((prev) => ({ ...prev, visible: false }));
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast.visible]);
 
-            if (!response.ok) {
-                setErro("E-mail ou senha inválidos");
-                return;
-            }
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-            const dados = await response.json();
+    try {
+      const response = await fetch("http://localhost:8080/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          senha
+        })
+      });
 
-            console.log("Login realizado:", dados);
+      if (!response.ok) {
+        setToast({
+          visible: true,
+          type: 'error',
+          title: 'Erro de Autenticação',
+          message: 'E-mail ou senha inválidos. Tente novamente.'
+        });
+        return;
+      }
 
-            if (dados.tipo === "profissional") {
-                navigate("/PageWeb");
-            } else if (dados.tipo === "atleta") {
-                navigate("/dashboardAtleta");
-            } else {
-                setErro("Tipo de usuário inválido");
-            }
+      const dados = await response.json();
+      console.log("Login realizado:", dados);
 
-        } catch (error) {
-            setErro("Erro ao conectar ao servidor");
-            console.error(error);
-        }
-    };
+      if (dados.tipo === "profissional") {
+        setToast({
+          visible: true,
+          type: 'success',
+          title: 'Login Realizado!',
+          message: 'Bem-vindo ao painel HydraSense.'
+        });
+        setTimeout(() => navigate("/PageWeb"), 1500);
+      } else if (dados.tipo === "atleta") {
+        setToast({
+          visible: true,
+          type: 'success',
+          title: 'Login Realizado!',
+          message: 'Redirecionando para o dashboard do atleta.'
+        });
+        setTimeout(() => navigate("/dashboardAtleta"), 1500);
+      } else {
+        setToast({
+          visible: true,
+          type: 'error',
+          title: 'Acesso Negado',
+          message: 'Tipo de usuário inválido.'
+        });
+      }
+
+    } catch (error) {
+      setToast({
+        visible: true,
+        type: 'error',
+        title: 'Erro de Conexão',
+        message: 'Erro ao conectar ao servidor.'
+      });
+      console.error(error);
+    }
+  };
 
   return (
-    <div className="login-container">
+    <>
+      {/* --- INÍCIO DO COMPONENTE TOAST --- */}
+      <div className={`toast-notification ${toast.visible ? 'show' : ''} ${toast.type}`}>
+        <div className="toast-icon">
+          {toast.type === 'error' ? <AlertCircle size={24} /> : <CheckCircle size={24} />}
+        </div>
+        <div className="toast-content">
+          <span className="toast-title">{toast.title}</span>
+          <span className="toast-message">{toast.message}</span>
+        </div>
+        <button className="toast-close" onClick={() => setToast({ ...toast, visible: false })}>
+          <X size={18} />
+        </button>
+        {/* Barra de progresso animada */}
+        <div className="toast-progress-bar"></div>
+      </div>
+      {/* --- FIM DO COMPONENTE TOAST --- */}
+
+      <div className="login-container">
       {/* Lado Esquerdo: Branding */}
-      <div 
-        className="login-branding" 
-        style={{ 
-          backgroundImage: `linear-gradient(rgba(100, 18, 32, 0.85), rgba(100, 18, 32, 0.85)), url(${logoFundo})` 
+      <div
+        className="login-branding"
+        style={{
+          backgroundImage: `linear-gradient(rgba(100, 18, 32, 0.85), rgba(100, 18, 32, 0.85)), url(${logoFundo})`
         }}
       >
         {/* Logo Superior Esquerdo */}
@@ -80,17 +141,17 @@ export function Home() {
             <p>Insira suas credenciais técnicas para autenticação.</p>
           </header>
 
-            <form className="login-form" onSubmit={handleLogin}>
+          <form className="login-form" onSubmit={handleLogin}>
             <div className="input-group">
               <label>ENDEREÇO DE E-MAIL</label>
               <div className="input-field">
-                  <input
-                      type="email"
-                      placeholder="nome@performance.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                  />
+                <input
+                  type="email"
+                  placeholder="nome@performance.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
                 <Mail size={18} color="#6C757D" />
               </div>
             </div>
@@ -98,15 +159,15 @@ export function Home() {
             <div className="input-group">
               <label>SENHA DE ACESSO</label>
               <div className="input-field">
-                  <input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="••••••••"
-                      value={senha}
-                      onChange={(e) => setSenha(e.target.value)}
-                      required
-                  />
-                <button 
-                  type="button" 
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                  required
+                />
+                <button
+                  type="button"
                   className="btn-show-password"
                   onClick={() => setShowPassword(!showPassword)}
                 >
@@ -125,7 +186,9 @@ export function Home() {
               </label>
               <button type="button" className="forgot-password">ESQUECI MINHA SENHA</button>
             </div>
-                {erro && <p style={{ color: 'red' }}>{erro}</p>}
+
+            {/* O aviso <p> antigo de erro foi removido, agora o Toast cuida disso */}
+
             <button type="submit" className="btn-login-primary">
               ACESSAR PORTAL <ChevronRight size={18} />
             </button>
@@ -144,12 +207,13 @@ export function Home() {
             </div>
 
             <p className="signup-prompt">
-              Novo no Hydra Sense? 
-              <span onClick={() => navigate('/registro')} style={{cursor: 'pointer'}}> Solicitar acesso ao Painel</span>
+              Novo no Hydra Sense?
+              <span onClick={() => navigate('/registro')} style={{ cursor: 'pointer' }}> Solicitar acesso ao Painel</span>
             </p>
           </form>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
