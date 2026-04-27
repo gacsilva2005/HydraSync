@@ -36,8 +36,11 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                 },
                 body: JSON.stringify({
                     nome: formData.nome,
-                    pesoAtual: parseFloat(formData.pesoAtual),
+                    email: formData.email,
+                    clube: formData.clube,
                     modalidadePrincipal: formData.modalidadePrincipal,
+                    pesoAtual: parseFloat(formData.pesoAtual),
+                    altura: parseFloat(formData.altura),
                     dataNascimento: "2000-01-01"
                 })
             });
