@@ -93,7 +93,7 @@ export default function LoginScreen() {
           <Text style={styles.inputLabel}>ENDEREÇO DE E-MAIL</Text>
           <View style={styles.inputContainer}>
             <TextInput
-              style={styles.input}
+              style={[styles.input, {color:'#000'}]}
               placeholder="nome@performance.com"
               placeholderTextColor="#7C7C8A"
               keyboardType="email-address"
@@ -108,7 +108,7 @@ export default function LoginScreen() {
           <Text style={styles.inputLabel}>SENHA DE ACESSO</Text>
           <View style={styles.inputContainer}>
             <TextInput
-              style={styles.input}
+              style={[styles.input, {color:'#000'}]}
               placeholder="••••••••"
               placeholderTextColor="#7C7C8A"
               secureTextEntry={!showPassword}
@@ -131,7 +131,7 @@ export default function LoginScreen() {
               />
               <Text style={styles.checkboxLabel}>Lembrar sessão</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => router.push('/esquecer_senha')}>
               <Text style={styles.forgotPassword}>ESQUECI MINHA SENHA</Text>
             </TouchableOpacity>
           </View>
