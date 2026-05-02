@@ -46,7 +46,7 @@ export default function LoginScreen() {
     console.log('Login validado com sucesso! Entrando com:', cleanEmail);
     
     // Avança para o Dashboard
-    router.replace('./dashboard'); 
+    router.replace('/(tabs)/dashboard');
   };
 
   return (
@@ -55,7 +55,7 @@ export default function LoginScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <ImageBackground
-        source={require('../../assets/images/saocamilo.jpg')} 
+        source={require('../assets/images/saocamilo.jpg')} 
         style={styles.backgroundImage}
         imageStyle={{ opacity: 0.09 }} 
       >
@@ -131,7 +131,7 @@ export default function LoginScreen() {
               />
               <Text style={styles.checkboxLabel}>Lembrar sessão</Text>
             </View>
-            <TouchableOpacity onPress={() => router.push('/esquecer_senha')}>
+            <TouchableOpacity onPress={() => router.push('./esquecer_senha')}>
               <Text style={styles.forgotPassword}>ESQUECI MINHA SENHA</Text>
             </TouchableOpacity>
           </View>
