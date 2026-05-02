@@ -48,7 +48,7 @@ export default function ForgotPasswordScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <ImageBackground
-        source={require('../../assets/images/saocamilo.jpg')} 
+        source={require('../assets/images/saocamilo.jpg')} 
         style={styles.backgroundImage}
         imageStyle={{ opacity: 0.09 }} 
       >
