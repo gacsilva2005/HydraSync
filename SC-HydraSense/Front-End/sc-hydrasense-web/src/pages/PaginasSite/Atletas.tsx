@@ -1,24 +1,17 @@
-// 1. AQUI ESTÃO OS IMPORTS NECESSÁRIOS
 import { useState } from 'react';
 import { NovoAtleta } from './NovoAtleta';
 
 export function Atletas() {
-    // 2. AQUI CRIAMOS A "MEMÓRIA" DA TELA
-    // 'verFormulario' começa como 'false' (mostra a tabela)
     const [verFormulario, setVerFormulario] = useState(false);
 
-    // 3. A FUNÇÃO QUE O BOTÃO CHAMA
     const handleNovoAtleta = () => {
-        setVerFormulario(true); // Muda a tela para o formulário
+        setVerFormulario(true);
     };
 
-    // 4. A REGRA DE TROCA DE TELA
     if (verFormulario) {
-        // Se for verdadeiro, mostra a tela do NovoAtleta e passa uma função para ele conseguir voltar
         return <NovoAtleta onBack={() => setVerFormulario(false)} />;
     }
 
-    // Se for falso, mostra a sua tela normal de Atletas abaixo:
     return (
         <>
             <div className="atletas-header">
@@ -29,17 +22,13 @@ export function Atletas() {
                         Dados atualizados a cada 15 minutos.
                     </p>
                 </div>
-
-                {/* Quando clicar, chama a função que muda a tela */}
                 <button className="btn-primary btn-header-novo-atleta" onClick={handleNovoAtleta}>+ NOVO ATLETA</button>
             </div>
 
             <section className="filtros-container">
-                {/* Pesquisar */}
                 <div className="filtro-grupo filtro-busca">
                     <label>Pesquisar</label>
                     <div className="input-wrapper">
-                        {/* Ícone de Lupa herdando a cor da classe pai */}
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icone-busca">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -108,11 +97,10 @@ export function Atletas() {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* LINHA DO CARLOS SILVA */}
                         <tr>
                             <td>
                                 <div className="td-atleta">
-                                    <div className="avatar-placeholder" /> {/* Espaço para foto, opcional */}
+                                    <div className="avatar-placeholder" />
                                     <div className="atleta-info">
                                         <span className="atleta-nome">Carlos Silva</span>
                                         <span className="atleta-id">#10</span>
@@ -123,7 +111,6 @@ export function Atletas() {
                             <td>1.8%</td>
                             <td>1.5 L/h</td>
                             <td>
-                                {/* STATUS BADGE MODERADO */}
                                 <div className="td-status moderado">
                                     <span className="status-dot"></span>
                                     <span className="status-text">MODERADO</span>

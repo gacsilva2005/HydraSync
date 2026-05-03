@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { ArrowLeft, Save, User, Mail, Weight, Ruler } from 'lucide-react';
-import './PageWeb.css';
 
 interface NovoAtletaProps {
     onBack: () => void;
@@ -13,7 +12,8 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
         clube: '',
         modalidadePrincipal: '',
         pesoAtual: '',
-        altura: ''
+        altura: '',
+        dataNascimento: ''
     });
 
     const handleChange = (
@@ -41,7 +41,7 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                     modalidadePrincipal: formData.modalidadePrincipal,
                     pesoAtual: parseFloat(formData.pesoAtual),
                     altura: parseFloat(formData.altura),
-                    dataNascimento: "2000-01-01"
+                    dataNascimento: formData.dataNascimento
                 })
             });
 
@@ -51,9 +51,7 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
             }
 
             const atletaSalvo = await response.json();
-
             console.log("Atleta salvo:", atletaSalvo);
-
             alert("Atleta cadastrado com sucesso!");
             onBack();
 
@@ -65,7 +63,7 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
 
     return (
         <div className="novo-atleta-wrapper">
-            {/* Cabeçalho do Formulário */}
+            {/* === CABEÇALHO DO FORMULÁRIO === */}
             <div className="atletas-header">
                 <div className="atletas-header__info">
                     <button className="btn-back" onClick={onBack}>
@@ -78,7 +76,6 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
 
             <form className="novo-atleta-form" onSubmit={handleSubmit}>
                 <div className="form-grid">
-                    {/* Informações Básicas */}
                     <div className="filtro-grupo">
                         <label>Nome Completo</label>
                         <div className="input-wrapper">
@@ -108,7 +105,6 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                         </div>
                     </div>
 
-                    {/* Seleção de Time e Modalidade */}
                     <div className="filtro-grupo">
                         <label>Time / Clube</label>
                         <select
@@ -139,7 +135,6 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                         </select>
                     </div>
 
-                    {/* Dados Físicos */}
                     <div className="filtro-grupo">
                         <label>Peso Inicial (kg)</label>
                         <div className="input-wrapper">
@@ -148,6 +143,9 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                                 type="number"
                                 name="pesoAtual"
                                 placeholder="00.0"
+                                min="30"
+                                max="200"
+                                step="0.1"
                                 value={formData.pesoAtual}
                                 onChange={handleChange}
                                 required
@@ -155,7 +153,6 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                         </div>
                     </div>
 
-                    {/* Altura */}
                     <div className="filtro-grupo">
                         <label>Altura (cm)</label>
                         <div className="input-wrapper">
@@ -164,8 +161,24 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                                 type="number"
                                 name="altura"
                                 placeholder="180"
+                                min="100"
+                                max="250"
+                                step="1"
                                 value={formData.altura}
                                 onChange={handleChange}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="filtro-grupo">
+                        <label>Data de Nascimento</label>
+                        <div className="input-wrapper">
+                            <input
+                                type="date"
+                                name="dataNascimento"
+                                value={formData.dataNascimento}
+                                onChange={handleChange}
+                                required
                             />
                         </div>
                     </div>
@@ -175,7 +188,6 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                     <button type="button" className="btn-secondary" onClick={onBack}>
                         CANCELAR
                     </button>
-
                     <button type="submit" className="btn-primary">
                         <Save size={18} /> SALVAR REGISTRO
                     </button>

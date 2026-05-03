@@ -5,7 +5,7 @@ import './Home.css';
 
 import logoFundo from '../assets/Logo-Fundo.png';
 
-export function PageWeb() {
+export function GoogleCallback() {
     const [usuario, setUsuario] = useState<any>(null);
 
     useEffect(() => {
