@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  KeyboardAvoidingView, 
-  Platform, 
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
   ImageBackground,
   ScrollView,
-  Alert
+  Alert,
 } from 'react-native';
+import { Button } from '../components/Button';
+import { Screen } from '../components/Screen';
 import { Feather, FontAwesome5 } from '@expo/vector-icons';
-import { styles } from './styles'; 
+import { styles } from './styles';
 import { router } from 'expo-router';
+import { Input } from '../components/Input';
+import { theme } from '../global/themas';
 
 export default function ForgotPasswordScreen() {
   const [email, setEmail] = useState('');
@@ -36,28 +40,16 @@ export default function ForgotPasswordScreen() {
 
     // Simulação de envio
     Alert.alert(
-      'Solicitação Enviada', 
+      'Solicitação Enviada',
       'Se este e-mail estiver em nossa base, você receberá instruções para redefinir sua senha em instantes.',
       [{ text: 'OK', onPress: () => router.back() }]
     );
   };
 
   return (
-    <KeyboardAvoidingView 
-      style={styles.container} 
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-    >
-      <ImageBackground
-<<<<<<< HEAD
-        source={require('../../assets/images/saocamilo.jpg')} 
-=======
-        source={require('../assets/images/saocamilo.jpg')} 
->>>>>>> develop
-        style={styles.backgroundImage}
-        imageStyle={{ opacity: 0.09 }} 
-      >
-        <ScrollView contentContainerStyle={styles.scrollContainer} bounces={false}>
-          
+    <Screen bgImage={require('../assets/images/saocamilo.jpg')}
+        backgroundColor= "#4A0E17"> 
+
           {/* Reaproveitando o Cabeçalho */}
           <View style={styles.headerSection}>
             <View style={styles.logoContainer}>
@@ -67,7 +59,7 @@ export default function ForgotPasswordScreen() {
 
             <Text style={styles.mainTitle}>RECUPERAR</Text>
             <Text style={styles.subTitleHighlight}>ACESSO</Text>
-            
+
             <Text style={styles.description}>
               Identifique-se para validar sua identidade{'\n'}
               e restaurar suas credenciais de performance.
@@ -76,9 +68,9 @@ export default function ForgotPasswordScreen() {
 
           {/* Card de Recuperação */}
           <View style={styles.bottomCard}>
-            <TouchableOpacity 
-                style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}
-                onPress={() => router.back()}
+            <TouchableOpacity
+              style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}
+              onPress={() => router.back()}
             >
               <Feather name="arrow-left" size={20} color="#7C7C8A" />
               <Text style={{ color: '#7C7C8A', marginLeft: 8, fontWeight: '500' }}>VOLTAR AO LOGIN</Text>
@@ -86,31 +78,25 @@ export default function ForgotPasswordScreen() {
 
             <Text style={styles.cardTitle}>ESQUECEU A SENHA?</Text>
             <Text style={styles.cardSubtitle}>
-                Enviaremos um código de verificação para o seu e-mail cadastrado no laboratório.
+              Enviaremos um código de verificação para o seu e-mail cadastrado no laboratório.
             </Text>
 
             {/* Input de E-mail */}
-            <Text style={styles.inputLabel}>ENDEREÇO DE E-MAIL CADASTRADO</Text>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={[styles.input, {color:'#000'}]}
-                placeholder="nome@performance.com"
-                placeholderTextColor="#7C7C8A"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                value={email}
-                onChangeText={setEmail}
-              />
-              <Feather name="mail" size={20} color="#7C7C8A" />
-            </View>
+            <Input
+              label="Endereço de E-mail cadastrado"
+              iconName="mail"
+              placeholder="Digite seu e-mail do portal"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              value={email}
+              onChangeText={setEmail}
+            />
 
             {/* Botão de Enviar */}
-            <TouchableOpacity 
-              style={[styles.loginButton, { marginTop: 20 }]} 
+            <Button
+              title="ENVIAR"
               onPress={handleResetPassword}
-            >
-              <Text style={styles.loginButtonText}>ENVIAR</Text>
-            </TouchableOpacity>
+            />
 
             <View style={[styles.footerRow, { marginTop: 30 }]}>
               <Text style={styles.footerText}>Problemas com o e-mail? </Text>
@@ -119,8 +105,7 @@ export default function ForgotPasswordScreen() {
               </TouchableOpacity>
             </View>
           </View>
-        </ScrollView>
-      </ImageBackground> 
-    </KeyboardAvoidingView>
+    
+    </Screen>
   );
 }

@@ -24,6 +24,13 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'PROFILE',
+          tabBarIcon: ({ color }) => <Feather name="user" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="dashboard"
         options={{
           title: 'DASHBOARD',
@@ -44,13 +51,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <FontAwesome5 name="bolt" size={20} color={color} />,
         }}
       />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: 'PROFILE',
-          tabBarIcon: ({ color }) => <Feather name="user" size={24} color={color} />,
-        }}
-      />
+      
     </Tabs>
   );
 }

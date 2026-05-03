@@ -3,19 +3,6 @@ import { StyleSheet } from 'react-native';
 import { theme } from '../global/themas';
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#3D0D14', 
-  },
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-    height: '100%', // Garante que a imagem cubra tudo
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    justifyContent: 'space-between',
-  },
   headerSection: {
     paddingHorizontal: 32,
     paddingTop: 80,
@@ -70,6 +57,7 @@ export const styles = StyleSheet.create({
     lineHeight: 26,
   },
   bottomCard: {
+    flex: 1,
     backgroundColor: '#FFF',
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
@@ -89,30 +77,6 @@ export const styles = StyleSheet.create({
     fontFamily: theme.fonts.bodyRegular,
     fontSize: 14,
     marginBottom: 32,
-  },
-  inputLabel: {
-    color: '#7C7C8A',
-    fontFamily: theme.fonts.bodyBold,
-    fontSize: 10,
-    letterSpacing: 1,
-    marginBottom: 8,
-    marginTop: 16,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: theme.colors.textWhite, 
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    paddingHorizontal: 16,
-    height: 56,
-  },
-  input: {
-    flex: 1,
-    color: '#FFF',
-    fontFamily: theme.fonts.bodyRegular,
-    fontSize: 16,
   },
   optionsRow: {
     flexDirection: 'row',
@@ -140,38 +104,6 @@ export const styles = StyleSheet.create({
     color: '#D90429',
     fontFamily: theme.fonts.bodyBold,
     fontSize: 12,
-  },
-  loginButton: {
-    height: 56,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#E4E4E7',
-    backgroundColor: theme.colors.critical,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 32,
-  },
-  loginButtonText: {
-    color: theme.colors.textWhite,
-    fontFamily: theme.fonts.bodyBold,
-    fontSize: 14,
-    letterSpacing: 1,
-  },
-  dividerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 32,
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: '#E4E4E7',
-  },
-  dividerText: {
-    color: '#C4C4CC',
-    fontFamily: theme.fonts.bodyMedium,
-    fontSize: 12,
-    marginHorizontal: 16,
   },
   socialRow: {
     flexDirection: 'row',
