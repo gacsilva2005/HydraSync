@@ -48,7 +48,11 @@ export default function ForgotPasswordScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <ImageBackground
+<<<<<<< HEAD
         source={require('../../assets/images/saocamilo.jpg')} 
+=======
+        source={require('../assets/images/saocamilo.jpg')} 
+>>>>>>> develop
         style={styles.backgroundImage}
         imageStyle={{ opacity: 0.09 }} 
       >
