@@ -14,7 +14,6 @@ import lombok.Setter;
 @Table(name = "Atleta")
 public class Atleta {
 
-    // Getters e Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,14 +24,20 @@ public class Atleta {
     @Column(nullable = false)
     private LocalDate dataNascimento;
 
+    @Column(length = 100, unique = true)
+    private String email;
+
+    @Column(length = 100)
+    private String clube;
+
     @Column(nullable = false, length = 50)
     private String modalidadePrincipal;
 
     @Column(nullable = false)
     private Float pesoAtual;
 
-    @Column(unique = true)
-    private String email;
+    @Column
+    private Float altura;
 
     private String senha;
 
@@ -47,7 +52,7 @@ public class Atleta {
     @OneToOne(mappedBy = "atleta", cascade = CascadeType.ALL)
     private RegistroDeHidratacao registroDeHidratacao;
 
-    //Relação 1 com muitos SessaoDeTreino
+    // Relação sessões
     @JsonIgnore
     @OneToMany(mappedBy = "atleta", cascade = CascadeType.ALL)
     private List<SessaoDeTreino> sessoes = new ArrayList<>();
@@ -55,20 +60,24 @@ public class Atleta {
     // Construtor padrão JPA
     public Atleta() {}
 
-    // Construtor da classe
-    public Atleta(String nome, LocalDate dataNascimento, String modalidadePrincipal, Float pesoAtual) {
+    public Atleta(String nome,
+                  LocalDate dataNascimento,
+                  String email,
+                  String clube,
+                  String modalidadePrincipal,
+                  Float pesoAtual,
+                  Float altura) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.clube = clube;
         this.modalidadePrincipal = modalidadePrincipal;
         this.pesoAtual = pesoAtual;
+        this.altura = altura;
     }
 
     public void adicionarSessao(SessaoDeTreino sessao) {
         sessoes.add(sessao);
         sessao.setAtleta(this);
-    }
-
-    public void setProfissional(Profissional profissional) {
-        this.profissional = profissional;
     }
 }

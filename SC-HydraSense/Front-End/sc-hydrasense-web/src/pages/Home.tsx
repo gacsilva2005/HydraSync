@@ -5,11 +5,52 @@ import './Home.css';
 
 import logoFundo from '../assets/Logo-Fundo.png';
 
+export function GoogleCallback() {
+    const [usuario, setUsuario] = useState<any>(null);
+
+    useEffect(() => {
+        fetch("http://localhost:8080/auth/user", {
+            method: "GET",
+            credentials: "include"
+        })
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error("Usuário não autenticado");
+                }
+                return res.json();
+            })
+            .then((data) => {
+                console.log("Usuário Google:", data);
+                setUsuario(data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, []);
+
+    return (
+        <div>
+            <h1>Bem-vindo ao Portal</h1>
+
+            {usuario && (
+                <>
+                    <p>{usuario.name}</p>
+                    <p>{usuario.email}</p>
+                    <img src={usuario.picture} width={80} />
+                </>
+            )}
+        </div>
+    );
+}
+
 export function Home() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const handleGoogleLogin = () => {
+      window.location.href = "http://localhost:8080/oauth2/authorization/google";
+  };
 
   // Estado para controlar a notificação Toast
   const [toast, setToast] = useState({
@@ -198,9 +239,9 @@ export function Home() {
             </div>
 
             <div className="social-login">
-              <button type="button" className="btn-social">
-                <Globe size={18} /> GOOGLE
-              </button>
+                <button type="button" className="btn-social" onClick={handleGoogleLogin}>
+                    <Globe size={18} /> GOOGLE
+                </button>
               <button type="button" className="btn-social">
                 <Apple size={18} /> APPLE
               </button>

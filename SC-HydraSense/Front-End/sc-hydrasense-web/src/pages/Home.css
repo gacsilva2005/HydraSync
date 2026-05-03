@@ -322,23 +322,27 @@
 .toast-notification {
     position: fixed;
     top: 30px;
-    right: -400px; /* Escondido fora da tela */
+    right: -450px; /* Aumentado para garantir que fique fora da tela */
     width: 380px;
     background-color: var(--cor-branco);
     border-radius: 8px;
-    box-shadow: var(--shadow); /* Puxando a sombra do seu root */
+    box-shadow: var(--shadow);
     display: flex;
     align-items: center;
     padding: 16px 20px;
     gap: 16px;
     z-index: 9999;
-    transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    opacity: 0; /* Totalmente invisível por padrão */
+    visibility: hidden; /* Impede interações e renderização residual */
     overflow: hidden; /* Para a barra de progresso não vazar */
 }
 
 /* Classe que faz o toast aparecer */
 .toast-notification.show {
     right: 30px;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Cores por tipo de alerta */
