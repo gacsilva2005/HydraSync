@@ -12,18 +12,20 @@ import { styles } from './styles';
 
 interface ScreenProps {
   children: React.ReactNode;
+  HeaderComponent?: React.ReactNode; // <-- Nova prop para o Header Fixo
   scrollable?: boolean;
   bgImage?: ImageSourcePropType;
   style?: ViewStyle;
-  backgroundColor?: string; // <-- 1. Adicionamos a opção de cor de fundo
+  backgroundColor?: string;
 }
 
 export function Screen({ 
   children, 
+  HeaderComponent, // Recebemos o componente fixo aqui
   scrollable = true, 
   bgImage, 
   style,
-  backgroundColor = '#FFFFFF' // <-- 2. O padrão continua sendo branco, mas podemos mudar!
+  backgroundColor = '#FFFFFF'
 }: ScreenProps) {
   
   const content = scrollable ? (
@@ -31,6 +33,8 @@ export function Screen({
       contentContainerStyle={styles.scrollContainer} 
       bounces={false}
       showsVerticalScrollIndicator={false}
+      // Isso ajuda o teclado a não cobrir o input focado
+      keyboardShouldPersistTaps="handled" 
     >
       {children}
     </ScrollView>
@@ -40,10 +44,13 @@ export function Screen({
 
   return (
     <KeyboardAvoidingView
-      // 3. A MÁGICA: Injetamos a cor de fundo dinâmica direto no container principal
       style={[styles.container, { backgroundColor }]} 
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      // Offset ajustado para garantir que o input suba acima do teclado
     >
+      {/* O HeaderComponent fica FORA do ScrollView para travar no topo */}
+      {HeaderComponent && <View>{HeaderComponent}</View>}
+
       {bgImage ? (
         <ImageBackground 
           source={bgImage} 
