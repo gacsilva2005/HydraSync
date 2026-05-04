@@ -9,13 +9,15 @@ export const theme = {
     // Fundo e Superfícies
     background: '#F7F7F9',    // Fundo geral do app (cinza bem claro)
     surface: '#FFFFFF',       // Fundo dos cards brancos
-    header: '#121214',        // Fundo do cabeçalho superior escuro
+    headersoft: '#1a1a1d',    // Fundo do cabeçalho superior escuro
+    header: '#121214',        // Fundo do cabeçalho superior (cinza quase preto)
     
     // Textos
     textPrimary: '#1A1A1E',   // Textos principais e títulos (quase preto)
     textSecondary: '#7C7C8A', // Textos secundários, legendas e rótulos (cinza)
     textLight: '#C4C4CC',     // Textos de apoio ou placeholders
     textWhite: '#FFFFFF',     // Textos sobre fundos escuros ou botões
+    textBrown: '#5D3F3D',     // Textos marrons para destaque ou contraste (ex: descrição da tela de recuperação)
     
     // Status (Feedback Visual)
     success: '#16A34A',       // Verde (Optimal, metas alcançadas)
