@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   mainContent: {
-    paddingBottom: 100, // Espaço extra no fim para garantir que o último input suba
+    paddingBottom: 20,
+    flex: 1,
   },
   content: {
     padding: 20,
@@ -207,11 +208,13 @@ export const styles = StyleSheet.create({
   },
   photoTextContainer: {
     flex: 1,
+    justifyContent: 'center',
   },
   photoTitle: {
     fontFamily: theme.fonts.headingBold,
     fontSize: 18,
     color: theme.colors.textPrimary,
+    textTransform: 'uppercase',
   },
   photoSubtitle: {
     fontFamily: theme.fonts.bodyRegular,
@@ -219,6 +222,37 @@ export const styles = StyleSheet.create({
     color: theme.colors.textBrown,
     marginTop: 2,
   },
+  nameInput: {
+  borderBottomWidth: 1,
+  borderBottomColor: theme.colors.primary, // Linha vermelha indicando edição
+  paddingBottom: 2,
+  minWidth: 150,
+  },
+  professionalContainer: {
+  paddingHorizontal: 20,
+  marginTop: 15,
+  gap: 15, // Espaçamento entre os cards
+},
+infoCard: {
+  backgroundColor: '#F5F5F5', // Fundo cinza claro indicando que é "travado"
+  borderWidth: 1,
+  borderColor: '#E0E0E0',
+  borderRadius: 8,
+  paddingVertical: 12,
+  paddingHorizontal: 15,
+},
+infoLabel: {
+  fontFamily: theme.fonts.bodyBold,
+  fontSize: 12,
+  color: theme.colors.textBrown, // Ou a cor primária, dependendo do destaque que deseja
+  marginBottom: 4,
+},
+infoValue: {
+  fontFamily: theme.fonts.headingBold,
+  fontSize: 18,
+  color: theme.colors.textPrimary,
+  textTransform: 'uppercase',
+},
   logoutButton: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -230,9 +264,8 @@ export const styles = StyleSheet.create({
   logoutText: {
     fontFamily: theme.fonts.bodyBold,
     fontSize: 14,
-    color: theme.colors.primary, // Cor sóbria conforme o design
+    color: theme.colors.primary, 
     textTransform: 'uppercase',
-    letterSpacing: 1,
-    opacity: 0.5, 
+    letterSpacing: 1, 
   },
 });

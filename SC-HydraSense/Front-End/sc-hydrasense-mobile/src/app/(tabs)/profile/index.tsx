@@ -1,6 +1,6 @@
 // src/app/(tabs)/profile/index.tsx
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { Screen } from '../../../components/Screen';
 import { Header } from '../../../components/Header';
 import { InputProfile } from '../../../components/InputProfile';
@@ -9,16 +9,16 @@ import { theme } from '@/src/global/themas';
 import MaterialCommunityIcons from '@expo/vector-icons/build/MaterialCommunityIcons';
 import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
+import { Divider } from '@/src/components/Divider';
 
 export default function Profile() {
   const router = useRouter();
-  const handleLogout = () => {
-    // Aqui você limparia tokens de autenticação futuramente
-    console.log("Sessão encerrada");
-    router.replace('/'); // Caminho da sua tela de Login
-  };
   const [isEditing, setIsEditing] = useState(false);
-  // Altere para null no início
+  const [userName, setUserName] = useState('SEU NOME');
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
+  const [age, setAge] = useState('');
+  const [gender, setGender] = useState<'M' | 'F' | null>('M');
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const pickImage = async () => {
     // Pede permissão para acessar a galeria
@@ -33,15 +33,18 @@ export default function Profile() {
       setProfileImage(result.assets[0].uri); // Atualiza a foto na tela
     }
   };
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState<'M' | 'F' | null>('M');
   const handleSave = () => {
     // Aqui entrará a integração com o Back-end futuramente
     console.log("Dados salvos:", { weight, height, age, gender });
     setIsEditing(false);
   };
+  const handleLogout = () => {
+    console.log("Sessão encerrada");
+    router.replace('/');
+  };
+  const [equipe, setEquipe] = useState('SÃO PAULO FC');
+  const [time, setTime] = useState('SÃO PAULO FC - PROFISSIONAL');
+
 
   return (
     <Screen
@@ -94,10 +97,25 @@ export default function Profile() {
             )}
           </View>
           <View style={styles.photoTextContainer}>
-            <Text style={styles.photoTitle}>FOTO DE PERFIL</Text>
-            <Text style={styles.photoSubtitle}>
-              {isEditing ? "Toque no ícone para alterar" : "Clique em EDITAR para mudar"}
-            </Text>
+            <View style={styles.photoTextContainer}>
+              {isEditing ? (
+                <TextInput
+                  style={[styles.photoTitle, styles.nameInput]} // Adicionaremos o nameInput no styles
+                  value={userName}
+                  onChangeText={setUserName}
+                  autoFocus
+                  placeholder="SEU NOME"
+                  autoCorrect={false}
+                  spellCheck={false}
+                  autoCapitalize="characters"
+                />
+              ) : (
+                <Text style={styles.photoTitle}>{userName}</Text>
+              )}
+              <Text style={styles.photoSubtitle}>
+                {isEditing ? "Toque no ícone para alterar" : "Clique em EDITAR para mudar"}
+              </Text>
+            </View>
           </View>
         </View>
 
@@ -154,6 +172,19 @@ export default function Profile() {
               </Text>
             </TouchableOpacity>
           </View>
+
+        </View>
+        <Divider text="INFORMAÇÕES PROFISSIONAIS" />
+        <View style={styles.professionalContainer}>
+          <View style={styles.infoCard}>
+            <Text style={styles.infoLabel}>EQUIPE (ORGANIZAÇÃO)</Text>
+            <Text style={styles.infoValue}>{equipe}</Text>
+          </View>
+
+          <View style={styles.infoCard}>
+            <Text style={styles.infoLabel}>TIME (CATEGORIA)</Text>
+            <Text style={styles.infoValue}>{time}</Text>
+          </View>
         </View>
         <TouchableOpacity
           style={styles.logoutButton}
@@ -164,7 +195,6 @@ export default function Profile() {
             name="logout-variant"
             size={22}
             color={theme.colors.primary}
-            opacity={0.5}
           />
           <Text style={styles.logoutText}>ENCERRAR SESSÃO</Text>
         </TouchableOpacity>

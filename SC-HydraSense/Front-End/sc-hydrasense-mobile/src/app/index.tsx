@@ -55,7 +55,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <Screen bgImage={require('../assets/images/saocamilo.jpg')}
+    <Screen bgImage={require('../../assets/images/saocamilo.jpg')}
     backgroundColor= "#4A0E17"> 
 
           {/* === CABEÇALHO ESCURO === */}
@@ -147,7 +147,7 @@ export default function LoginScreen() {
             <View style={styles.footerRow}>
               <Text style={styles.footerText}>Novo no HydroPerform? </Text>
               <TouchableOpacity>
-                <Text style={styles.footerLink}>Solicitar acesso ao lab</Text>
+                <Text style={styles.footerLink}>Criar cadastro</Text>
               </TouchableOpacity>
             </View>
           </View>
