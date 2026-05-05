@@ -147,7 +147,7 @@ export default function LoginScreen() {
             <View style={styles.footerRow}>
               <Text style={styles.footerText}>Novo no HydroPerform? </Text>
               <TouchableOpacity>
-                <Text style={styles.footerLink}>Criar cadastro</Text>
+                <Text onPress={() => router.push('./cadastro')}style={styles.footerLink}>Criar cadastro</Text>
               </TouchableOpacity>
             </View>
           </View>
