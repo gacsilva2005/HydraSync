@@ -41,28 +41,28 @@ export const styles = StyleSheet.create({
     marginTop: 5,
   },
   titleContainer: {
-    paddingHorizontal: 20, // Alinha com o Header
-    marginTop: 10,         // Espaço abaixo da barra preta
-    marginBottom: 20,      // Espaço antes do parágrafo descritivo
+    paddingHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 20,
   },
   titleLine: {
-    fontSize: 48,                  // Tamanho gigante como no Figma
-    fontFamily: theme.fonts.headingBold, // Usa sua fonte negrito definida
-    color: theme.colors.textPrimary,              // Um preto quase puro para "O ESTADO"
-    lineHeight: 50,                // Mantém as linhas próximas uma da outra
-    textTransform: 'uppercase',    // Garante que fique tudo em maiúsculo
+    fontSize: 48,
+    fontFamily: theme.fonts.headingBold,
+    color: theme.colors.textPrimary,
+    lineHeight: 50,
+    textTransform: 'uppercase',
   },
   titleHighlight: {
-    color: theme.colors.primary,   // Aplica o seu vermelho do HydraSense em "BASAL"
+    color: theme.colors.primary,
   },
   description: {
-    paddingHorizontal: 20,         // Alinha com o título
-    fontSize: 16,                  // Tamanho de leitura padrão
-    fontFamily: theme.fonts.bodyRegular, // Fonte normal (não negrito)
-    color: theme.colors.textBrown, // Aquele cinza que definimos no seu tema
-    lineHeight: 24,                // Dá um "respiro" entre as linhas
-    marginTop: 5,                  // Pequeno espaço após o título "BASAL"
-    marginBottom: 30,              // Espaço maior antes de começar a próxima seção
+    paddingHorizontal: 20,
+    fontSize: 16,
+    fontFamily: theme.fonts.bodyRegular,
+    color: theme.colors.textBrown,
+    lineHeight: 24,
+    marginTop: 5,
+    marginBottom: 30,
   },
   inputContainer: {
     paddingHorizontal: 20,
@@ -71,18 +71,18 @@ export const styles = StyleSheet.create({
   inputLabel: {
     fontFamily: theme.fonts.bodyBold,
     fontSize: 14,
-    color: theme.colors.textBrown, // Um cinza médio para o rótulo
+    color: theme.colors.textBrown,
     marginBottom: 8,
   },
   inputValue: {
     fontFamily: theme.fonts.bodyBold,
-    fontSize: 22, // Número grande e em destaque
-    color: theme.colors.textSecondary, // Um cinza escuro para o valor
+    fontSize: 22,
+    color: theme.colors.textSecondary,
   },
   inputObservation: {
     fontFamily: theme.fonts.bodyRegular,
     fontSize: 10,
-    color: theme.colors.primary, // Vermelho de destaque do HydraSense
+    color: theme.colors.primary,
     marginTop: 6,
     textTransform: 'uppercase',
   },
@@ -93,11 +93,11 @@ export const styles = StyleSheet.create({
   },
   genderRow: {
     flexDirection: 'row',
-    gap: 15, // Espaçamento entre os botões
+    gap: 15,
     marginTop: 10,
   },
   genderButton: {
-    flex: 1, // Faz os dois botões terem o mesmo tamanho
+    flex: 1,
     height: 55,
     backgroundColor: '#FFF',
     borderWidth: 1,
@@ -107,8 +107,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   genderButtonSelected: {
-    borderColor: theme.colors.primary, // Borda vermelha quando selecionado
-    borderWidth: 2, // Um pouco mais grosso para destacar
+    borderColor: theme.colors.primary,
+    borderWidth: 2,
   },
   genderText: {
     fontFamily: theme.fonts.bodyBold,
@@ -116,14 +116,14 @@ export const styles = StyleSheet.create({
     color: theme.colors.textLight,
   },
   genderTextSelected: {
-    color: theme.colors.primary, // Texto vermelho quando selecionado
+    color: theme.colors.primary,
   },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingRight:10,
+    paddingRight: 10,
     marginBottom: 20,
   },
   sectionTitle: {
@@ -139,7 +139,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 20,
-    // Sombra leve para o botão de editar
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
@@ -152,21 +151,21 @@ export const styles = StyleSheet.create({
     color: theme.colors.primary,
   },
   inputBox: {
-    height: 65, // Aumentamos para acomodar a fonte maior com respiro
+    height: 65,
     borderRadius: 8,
     borderWidth: 1.5,
-    overflow: 'hidden', // Garante que nada saia da borda arredondada
+    overflow: 'hidden',
   },
   inputElement: {
     flex: 1,
     paddingHorizontal: 15,
     fontFamily: theme.fonts.bodyBold,
-    fontSize: 26, // Letra grande e imponente para os dados fisiológicos
+    fontSize: 26,
   },
   inputLocked: {
     backgroundColor: '#F0F0F0',
     borderColor: '#E0E0E0',
-    color: '#666', // Texto um pouco mais suave quando travado
+    color: '#666',
   },
   inputUnlocked: {
     backgroundColor: '#FFF',
@@ -223,49 +222,49 @@ export const styles = StyleSheet.create({
     marginTop: 2,
   },
   nameInput: {
-  borderBottomWidth: 1,
-  borderBottomColor: theme.colors.primary, // Linha vermelha indicando edição
-  paddingBottom: 2,
-  minWidth: 150,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.primary,
+    paddingBottom: 2,
+    minWidth: 150,
   },
   professionalContainer: {
-  paddingHorizontal: 20,
-  marginTop: 15,
-  gap: 15, // Espaçamento entre os cards
-},
-infoCard: {
-  backgroundColor: '#F5F5F5', // Fundo cinza claro indicando que é "travado"
-  borderWidth: 1,
-  borderColor: '#E0E0E0',
-  borderRadius: 8,
-  paddingVertical: 12,
-  paddingHorizontal: 15,
-},
-infoLabel: {
-  fontFamily: theme.fonts.bodyBold,
-  fontSize: 12,
-  color: theme.colors.textBrown, // Ou a cor primária, dependendo do destaque que deseja
-  marginBottom: 4,
-},
-infoValue: {
-  fontFamily: theme.fonts.headingBold,
-  fontSize: 18,
-  color: theme.colors.textPrimary,
-  textTransform: 'uppercase',
-},
+    paddingHorizontal: 20,
+    marginTop: 15,
+    gap: 15,
+  },
+  infoCard: {
+    backgroundColor: '#F5F5F5',
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 15,
+  },
+  infoLabel: {
+    fontFamily: theme.fonts.bodyBold,
+    fontSize: 12,
+    color: theme.colors.textBrown,
+    marginBottom: 4,
+  },
+  infoValue: {
+    fontFamily: theme.fonts.headingBold,
+    fontSize: 18,
+    color: theme.colors.textPrimary,
+    textTransform: 'uppercase',
+  },
   logoutButton: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 20,
-    marginTop: 40, 
+    marginTop: 40,
     gap: 10,
     paddingVertical: 15,
   },
   logoutText: {
     fontFamily: theme.fonts.bodyBold,
     fontSize: 14,
-    color: theme.colors.primary, 
+    color: theme.colors.primary,
     textTransform: 'uppercase',
-    letterSpacing: 1, 
+    letterSpacing: 1,
   },
 });

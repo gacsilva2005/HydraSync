@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Save, User, Mail, Weight, Ruler } from 'lucide-react';
+import { ArrowLeft, Save, User, Mail, Shield } from 'lucide-react';
 
 interface NovoAtletaProps {
     onBack: () => void;
@@ -9,11 +9,7 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
     const [formData, setFormData] = useState({
         nome: '',
         email: '',
-        clube: '',
-        modalidadePrincipal: '',
-        pesoAtual: '',
-        altura: '',
-        dataNascimento: ''
+        codigoEquipe: ''
     });
 
     const handleChange = (
@@ -37,11 +33,7 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                 body: JSON.stringify({
                     nome: formData.nome,
                     email: formData.email,
-                    clube: formData.clube,
-                    modalidadePrincipal: formData.modalidadePrincipal,
-                    pesoAtual: parseFloat(formData.pesoAtual),
-                    altura: parseFloat(formData.altura),
-                    dataNascimento: formData.dataNascimento
+                    codigoEquipe: formData.codigoEquipe
                 })
             });
 
@@ -69,16 +61,20 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                     <button className="btn-back" onClick={onBack}>
                         <ArrowLeft size={20} /> Voltar para a listagem
                     </button>
-                    <h1 className="pageweb__title">CADASTRAR NOVO ATLETA</h1>
-                    <p>Preencha os dados técnicos abaixo para iniciar o monitoramento de hidratação.</p>
+                    <h1 className="pageweb__title" style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '38px', color: 'var(--hydro-text-primary)', letterSpacing: '-0.5px' }}>
+                        CADASTRAR NOVO ATLETA
+                    </h1>
+                    <p style={{ color: 'var(--hydro-text-muted)', fontSize: '16px' }}>Preencha os dados básicos abaixo para iniciar o vínculo do atleta com sua equipe.</p>
                 </div>
             </div>
 
-            <form className="novo-atleta-form" onSubmit={handleSubmit}>
-                <div className="form-grid">
-                    <div className="filtro-grupo">
-                        <label>Nome Completo</label>
-                        <div className="input-wrapper">
+            <form className="novo-atleta-form" style={{ padding: '40px', borderRadius: '12px', border: '1px solid var(--hydro-border)', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }} onSubmit={handleSubmit}>
+                <div className="form-grid" style={{ marginBottom: '40px' }}>
+
+                    {/* Nome Completo */}
+                    <div className="filtro-grupo" style={{ gridColumn: '1 / -1' }}>
+                        <label style={{ fontSize: '12px', color: 'var(--hydro-action)', fontWeight: 700, letterSpacing: '0.5px' }}>NOME COMPLETO</label>
+                        <div className="input-wrapper" style={{ height: '48px', backgroundColor: '#F8F9FA' }}>
                             <User size={18} className="icone-busca" />
                             <input
                                 type="text"
@@ -91,9 +87,10 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                         </div>
                     </div>
 
+                    {/* E-mail */}
                     <div className="filtro-grupo">
-                        <label>E-mail de Contato</label>
-                        <div className="input-wrapper">
+                        <label style={{ fontSize: '12px', color: 'var(--hydro-action)', fontWeight: 700, letterSpacing: '0.5px' }}>E-MAIL DE CONTATO</label>
+                        <div className="input-wrapper" style={{ height: '48px', backgroundColor: '#F8F9FA' }}>
                             <Mail size={18} className="icone-busca" />
                             <input
                                 type="email"
@@ -101,94 +98,34 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                                 placeholder="atleta@time.com"
                                 value={formData.email}
                                 onChange={handleChange}
+                                required
                             />
                         </div>
                     </div>
 
+                    {/* Código da Equipe */}
                     <div className="filtro-grupo">
-                        <label>Time / Clube</label>
-                        <select
-                            name="clube"
-                            value={formData.clube}
-                            onChange={handleChange}
-                        >
-                            <option value="">Selecione o time</option>
-                            <option value="SPFC">São Paulo FC</option>
-                            <option value="PAL">Palmeiras</option>
-                            <option value="COR">Corinthians</option>
-                            <option value="SAN">Santos</option>
-                        </select>
-                    </div>
-
-                    <div className="filtro-grupo">
-                        <label>Modalidade</label>
-                        <select
-                            name="modalidadePrincipal"
-                            value={formData.modalidadePrincipal}
-                            onChange={handleChange}
-                            required
-                        >
-                            <option value="">Selecione a modalidade</option>
-                            <option value="futebol">Futebol</option>
-                            <option value="basquete">Basquete</option>
-                            <option value="volei">Vôlei</option>
-                        </select>
-                    </div>
-
-                    <div className="filtro-grupo">
-                        <label>Peso Inicial (kg)</label>
-                        <div className="input-wrapper">
-                            <Weight size={18} className="icone-busca" />
+                        <label style={{ fontSize: '12px', color: 'var(--hydro-action)', fontWeight: 700, letterSpacing: '0.5px' }}>CÓDIGO DA EQUIPE</label>
+                        <div className="input-wrapper" style={{ height: '48px', backgroundColor: '#F8F9FA' }}>
+                            <Shield size={18} className="icone-busca" />
                             <input
-                                type="number"
-                                name="pesoAtual"
-                                placeholder="00.0"
-                                min="30"
-                                max="200"
-                                step="0.1"
-                                value={formData.pesoAtual}
+                                type="text"
+                                name="codigoEquipe"
+                                placeholder="Ex: FUT-MASC-A"
+                                value={formData.codigoEquipe}
                                 onChange={handleChange}
                                 required
                             />
                         </div>
                     </div>
 
-                    <div className="filtro-grupo">
-                        <label>Altura (cm)</label>
-                        <div className="input-wrapper">
-                            <Ruler size={18} className="icone-busca" />
-                            <input
-                                type="number"
-                                name="altura"
-                                placeholder="180"
-                                min="100"
-                                max="250"
-                                step="1"
-                                value={formData.altura}
-                                onChange={handleChange}
-                            />
-                        </div>
-                    </div>
-
-                    <div className="filtro-grupo">
-                        <label>Data de Nascimento</label>
-                        <div className="input-wrapper">
-                            <input
-                                type="date"
-                                name="dataNascimento"
-                                value={formData.dataNascimento}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                    </div>
                 </div>
 
-                <div className="form-actions">
-                    <button type="button" className="btn-secondary" onClick={onBack}>
+                <div className="form-actions" style={{ paddingTop: '32px', borderTop: '1px solid var(--hydro-border)' }}>
+                    <button type="button" className="btn-secondary" style={{ padding: '12px 24px', fontSize: '14px' }} onClick={onBack}>
                         CANCELAR
                     </button>
-                    <button type="submit" className="btn-primary">
+                    <button type="submit" className="btn-primary" style={{ padding: '12px 24px', fontSize: '14px' }}>
                         <Save size={18} /> SALVAR REGISTRO
                     </button>
                 </div>

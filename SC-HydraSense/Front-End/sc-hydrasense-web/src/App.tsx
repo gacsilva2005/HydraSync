@@ -10,6 +10,7 @@ import { PageWeb } from "./pages/PaginasSite/PageWeb";
 import { Atletas } from "./pages/PaginasSite/Atletas";
 import { Dashboard } from "./pages/PaginasSite/Dashboard";
 import { Equipes } from "./pages/PaginasSite/Equipes";
+import { RelatorioEquipe } from "./pages/PaginasSite/RelatorioEquipe";
 import { Relatorios } from "./pages/PaginasSite/Relatorios";
 import { Configuracoes } from "./pages/PaginasSite/Configuracoes";
 
@@ -28,6 +29,7 @@ function App() {
                 <Route index element={<Dashboard />} />
                 <Route path="atletas" element={<Atletas />} />
                 <Route path="equipes" element={<Equipes />} />
+                <Route path="equipes/relatorio" element={<RelatorioEquipe />} />
                 <Route path="relatorios" element={<Relatorios />} />
                 <Route path="configuracoes" element={<Configuracoes />} />
             </Route>

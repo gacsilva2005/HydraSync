@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import teamLogo from '../../assets/icone_petala.png';
 
 export function Equipes() {
+    const navigate = useNavigate();
+
     return (
         <>
             {/* === CABEÇALHO === */}
@@ -54,7 +57,7 @@ export function Equipes() {
 
                     <div className="equipes-roster-grid">
 
-                        <div className="equipe-card">
+                        <div className="equipe-card" onClick={() => navigate('/PageWeb/equipes/relatorio')}>
                             <div className="equipe-card-status-dot"></div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
                                 <img src={teamLogo} alt="Logo Equipe" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
@@ -78,7 +81,7 @@ export function Equipes() {
                             </div>
                         </div>
 
-                        <div className="equipe-card inativa">
+                        <div className="equipe-card inativa" onClick={() => navigate('/PageWeb/equipes/relatorio')}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
                                 <img src={teamLogo} alt="Logo Equipe" style={{ width: '32px', height: '32px', objectFit: 'contain', opacity: 0.6 }} />
                                 <h4 className="equipe-card-nome" style={{ margin: 0 }}>BASQUETE SUB-20</h4>

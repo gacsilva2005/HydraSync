@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
-import { theme } from '../../global/themas'; // Ajuste o caminho se necessário
+import { theme } from '../../global/themas';
 
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: '90%',     // Não ocupa 100% da tela
-    alignSelf: 'center', // Centraliza o componente
+    width: '90%',
+    alignSelf: 'center',
     marginVertical: 20,
   },
   line: {

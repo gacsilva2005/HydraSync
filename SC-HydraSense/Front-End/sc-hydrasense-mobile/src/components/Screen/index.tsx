@@ -12,7 +12,7 @@ import { styles } from './styles';
 
 interface ScreenProps {
   children: React.ReactNode;
-  HeaderComponent?: React.ReactNode; // <-- Nova prop para o Header Fixo
+  HeaderComponent?: React.ReactNode;
   scrollable?: boolean;
   bgImage?: ImageSourcePropType;
   style?: ViewStyle;
@@ -21,7 +21,7 @@ interface ScreenProps {
 
 export function Screen({
   children,
-  HeaderComponent, // Recebemos o componente fixo aqui
+  HeaderComponent,
   scrollable = true,
   bgImage,
   style,
@@ -33,7 +33,6 @@ export function Screen({
       contentContainerStyle={styles.scrollContainer}
       bounces={false}
       showsVerticalScrollIndicator={false}
-      // Isso ajuda o teclado a não cobrir o input focado
       keyboardShouldPersistTaps="handled"
     >
       {children}
@@ -45,7 +44,7 @@ export function Screen({
   return (
     <KeyboardAvoidingView
       style={[styles.container, { backgroundColor }]}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined} // No Android, o 'undefined' deixa o SO gerenciar melhor
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 100}
     >
       {/* O HeaderComponent fica FORA do ScrollView para travar no topo */}

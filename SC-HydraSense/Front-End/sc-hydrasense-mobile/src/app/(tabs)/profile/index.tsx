@@ -20,39 +20,38 @@ export default function Profile() {
   const [age, setAge] = useState('');
   const [gender, setGender] = useState<'M' | 'F' | null>('M');
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [equipe, setEquipe] = useState('SÃO PAULO FC');
+  const [time, setTime] = useState('SÃO PAULO FC - PROFISSIONAL');
+
   const pickImage = async () => {
-    // Pede permissão para acessar a galeria
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true, // Permite cortar a foto (ficar quadrada/redonda)
+      allowsEditing: true,
       aspect: [1, 1],
       quality: 1,
     });
 
     if (!result.canceled) {
-      setProfileImage(result.assets[0].uri); // Atualiza a foto na tela
+      setProfileImage(result.assets[0].uri);
     }
   };
+
   const handleSave = () => {
-    // Aqui entrará a integração com o Back-end futuramente
     console.log("Dados salvos:", { weight, height, age, gender });
     setIsEditing(false);
   };
+
   const handleLogout = () => {
     console.log("Sessão encerrada");
     router.replace('/');
   };
-  const [equipe, setEquipe] = useState('SÃO PAULO FC');
-  const [time, setTime] = useState('SÃO PAULO FC - PROFISSIONAL');
-
 
   return (
     <Screen
-      backgroundColor={theme.colors.background} // Usa a cor do seu tema
-      scrollable={true} // Ativa o ScrollView interno da Screen
+      backgroundColor={theme.colors.background}
+      scrollable={true}
       HeaderComponent={<Header userPhoto={profileImage} />}
     >
-
       <View style={styles.mainContent}>
         <View style={styles.titleContainer}>
           <Text style={styles.titleLine}>O ESTADO</Text>
@@ -83,7 +82,6 @@ export default function Profile() {
         <View style={styles.photoSection}>
           <View style={styles.photoContainer}>
             <Image
-              // Se não tiver profileImage, ele usa a logo local como fallback no corpo do perfil também
               source={profileImage ? { uri: profileImage } : require('../../../assets/images/logo.png')}
               style={styles.profilePhoto}
             />
@@ -97,25 +95,23 @@ export default function Profile() {
             )}
           </View>
           <View style={styles.photoTextContainer}>
-            <View style={styles.photoTextContainer}>
-              {isEditing ? (
-                <TextInput
-                  style={[styles.photoTitle, styles.nameInput]} // Adicionaremos o nameInput no styles
-                  value={userName}
-                  onChangeText={setUserName}
-                  autoFocus
-                  placeholder="SEU NOME"
-                  autoCorrect={false}
-                  spellCheck={false}
-                  autoCapitalize="characters"
-                />
-              ) : (
-                <Text style={styles.photoTitle}>{userName}</Text>
-              )}
-              <Text style={styles.photoSubtitle}>
-                {isEditing ? "Toque no ícone para alterar" : "Clique em EDITAR para mudar"}
-              </Text>
-            </View>
+            {isEditing ? (
+              <TextInput
+                style={[styles.photoTitle, styles.nameInput]}
+                value={userName}
+                onChangeText={setUserName}
+                autoFocus
+                placeholder="SEU NOME"
+                autoCorrect={false}
+                spellCheck={false}
+                autoCapitalize="characters"
+              />
+            ) : (
+              <Text style={styles.photoTitle}>{userName}</Text>
+            )}
+            <Text style={styles.photoSubtitle}>
+              {isEditing ? "Toque no ícone para alterar" : "Clique em EDITAR para mudar"}
+            </Text>
           </View>
         </View>
 
@@ -126,7 +122,6 @@ export default function Profile() {
           editable={isEditing}
           placeholder='Ex: 70'
           observation="USE SEMPRE A MESMA BALANÇA"
-          // Passamos o estilo consolidado
           style={isEditing ? styles.inputUnlocked : styles.inputLocked}
         />
 
@@ -148,7 +143,6 @@ export default function Profile() {
           style={isEditing ? styles.inputUnlocked : styles.inputLocked}
         />
 
-        {/* Seção de Gênero com feedback visual de bloqueio */}
         <View style={[styles.genderContainer, !isEditing && { opacity: 0.5 }]}>
           <Text style={styles.inputLabel}>SEXO BIOLÓGICO</Text>
           <View style={styles.genderRow}>
@@ -172,9 +166,10 @@ export default function Profile() {
               </Text>
             </TouchableOpacity>
           </View>
-
         </View>
+
         <Divider text="INFORMAÇÕES PROFISSIONAIS" />
+
         <View style={styles.professionalContainer}>
           <View style={styles.infoCard}>
             <Text style={styles.infoLabel}>EQUIPE (ORGANIZAÇÃO)</Text>
@@ -186,6 +181,7 @@ export default function Profile() {
             <Text style={styles.infoValue}>{time}</Text>
           </View>
         </View>
+
         <TouchableOpacity
           style={styles.logoutButton}
           onPress={handleLogout}
