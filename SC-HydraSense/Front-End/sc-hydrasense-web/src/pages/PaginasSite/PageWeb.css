@@ -189,7 +189,7 @@
    SIDEBAR FOOTER & LOGOUT
    ========================================= */
 .hydro-sidebar-footer {
-    margin-top: auto; 
+    margin-top: auto;
     padding-top: 20px;
     border-top: 1px solid var(--hydro-border);
 }
@@ -523,24 +523,56 @@
 }
 
 /* MODERADO */
-.td-status.moderado { background-color: #fef1e8; }
-.td-status.moderado .status-dot { background-color: var(--hydro-moderate); }
-.td-status.moderado .status-text { color: #c9601d; }
+.td-status.moderado {
+    background-color: #fef1e8;
+}
+
+.td-status.moderado .status-dot {
+    background-color: var(--hydro-moderate);
+}
+
+.td-status.moderado .status-text {
+    color: #c9601d;
+}
 
 /* CRÍTICO */
-.td-status.critico { background-color: #ffeaea; }
-.td-status.critico .status-dot { background-color: var(--hydro-critical); }
-.td-status.critico .status-text { color: #9d1b1b; }
+.td-status.critico {
+    background-color: #ffeaea;
+}
+
+.td-status.critico .status-dot {
+    background-color: var(--hydro-critical);
+}
+
+.td-status.critico .status-text {
+    color: #9d1b1b;
+}
 
 /* ESTÁVEL */
-.td-status.estavel { background-color: #e8f9f0; }
-.td-status.estavel .status-dot { background-color: var(--hydro-stable); }
-.td-status.estavel .status-text { color: #0b8a47; }
+.td-status.estavel {
+    background-color: #e8f9f0;
+}
+
+.td-status.estavel .status-dot {
+    background-color: var(--hydro-stable);
+}
+
+.td-status.estavel .status-text {
+    color: #0b8a47;
+}
 
 /* BAIXO */
-.td-status.baixo { background-color: #ebf3f7; }
-.td-status.baixo .status-dot { background-color: var(--hydro-low); }
-.td-status.baixo .status-text { color: #1e6c93; }
+.td-status.baixo {
+    background-color: #ebf3f7;
+}
+
+.td-status.baixo .status-dot {
+    background-color: var(--hydro-low);
+}
+
+.td-status.baixo .status-text {
+    color: #1e6c93;
+}
 
 /* =========================================
    EMPTY STATE
@@ -656,6 +688,7 @@
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -688,7 +721,7 @@
     background-color: var(--hydro-bg-card);
     border-radius: 8px;
     padding: 24px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
 }
 
 .equipes-kpi-card.borda-critica {
@@ -755,7 +788,7 @@
 
 .equipe-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     border-color: var(--hydro-action);
 }
 
@@ -928,7 +961,7 @@
     padding: 40px 40px 32px 40px;
     border: 1px solid var(--hydro-border);
     margin-bottom: 40px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
 
 .relatorio-chart-wrapper {
@@ -945,9 +978,18 @@
     font-weight: 500;
 }
 
-.relatorio-chart-y-top { top: 0; }
-.relatorio-chart-y-mid { top: 50%; transform: translateY(-50%); }
-.relatorio-chart-y-bottom { bottom: 20px; }
+.relatorio-chart-y-top {
+    top: 0;
+}
+
+.relatorio-chart-y-mid {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.relatorio-chart-y-bottom {
+    bottom: 20px;
+}
 
 .relatorio-chart-svg {
     position: absolute;
@@ -977,7 +1019,7 @@
     height: 10px;
     border-radius: 50%;
     margin-bottom: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .relatorio-chart-x-label {
@@ -1106,7 +1148,7 @@
     border: 1px solid var(--hydro-border);
     border-radius: 12px;
     padding: 24px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 .equipes-sidebar-header {
@@ -1212,9 +1254,20 @@
     font-weight: 700;
 }
 
-.badge-status.ideal { background-color: #e8f9f0; color: var(--hydro-stable); }
-.badge-status.alerta { background-color: #fef1e8; color: var(--hydro-moderate); }
-.badge-status.critico { background-color: #ffeaea; color: var(--hydro-critical); }
+.badge-status.ideal {
+    background-color: #e8f9f0;
+    color: var(--hydro-stable);
+}
+
+.badge-status.alerta {
+    background-color: #fef1e8;
+    color: var(--hydro-moderate);
+}
+
+.badge-status.critico {
+    background-color: #ffeaea;
+    color: var(--hydro-critical);
+}
 
 .dot-status {
     width: 8px;
@@ -1222,6 +1275,14 @@
     border-radius: 50%;
 }
 
-.dot-status.ideal { background-color: var(--hydro-stable); }
-.dot-status.alerta { background-color: var(--hydro-attention); }
-.dot-status.critico { background-color: var(--hydro-critical); }
+.dot-status.ideal {
+    background-color: var(--hydro-stable);
+}
+
+.dot-status.alerta {
+    background-color: var(--hydro-attention);
+}
+
+.dot-status.critico {
+    background-color: var(--hydro-critical);
+}

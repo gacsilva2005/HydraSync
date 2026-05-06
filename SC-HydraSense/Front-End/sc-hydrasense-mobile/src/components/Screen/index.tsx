@@ -1,10 +1,10 @@
 import React from 'react';
-import { 
-  KeyboardAvoidingView, 
-  Platform, 
-  ScrollView, 
-  View, 
-  ImageBackground, 
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  View,
+  ImageBackground,
   ImageSourcePropType,
   ViewStyle
 } from 'react-native';
@@ -12,29 +12,28 @@ import { styles } from './styles';
 
 interface ScreenProps {
   children: React.ReactNode;
-  HeaderComponent?: React.ReactNode; // <-- Nova prop para o Header Fixo
+  HeaderComponent?: React.ReactNode;
   scrollable?: boolean;
   bgImage?: ImageSourcePropType;
   style?: ViewStyle;
   backgroundColor?: string;
 }
 
-export function Screen({ 
-  children, 
-  HeaderComponent, // Recebemos o componente fixo aqui
-  scrollable = true, 
-  bgImage, 
+export function Screen({
+  children,
+  HeaderComponent,
+  scrollable = true,
+  bgImage,
   style,
   backgroundColor = '#FFFFFF'
 }: ScreenProps) {
-  
+
   const content = scrollable ? (
-    <ScrollView 
-      contentContainerStyle={styles.scrollContainer} 
+    <ScrollView
+      contentContainerStyle={styles.scrollContainer}
       bounces={false}
       showsVerticalScrollIndicator={false}
-      // Isso ajuda o teclado a não cobrir o input focado
-      keyboardShouldPersistTaps="handled" 
+      keyboardShouldPersistTaps="handled"
     >
       {children}
     </ScrollView>
@@ -44,17 +43,17 @@ export function Screen({
 
   return (
     <KeyboardAvoidingView
-      style={[styles.container, { backgroundColor }]} 
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      // Offset ajustado para garantir que o input suba acima do teclado
+      style={[styles.container, { backgroundColor }]}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 100}
     >
       {/* O HeaderComponent fica FORA do ScrollView para travar no topo */}
       {HeaderComponent && <View>{HeaderComponent}</View>}
 
       {bgImage ? (
-        <ImageBackground 
-          source={bgImage} 
-          style={[styles.container, style]} 
+        <ImageBackground
+          source={bgImage}
+          style={[styles.container, style]}
           imageStyle={{ opacity: 0.065 }}
         >
           {content}

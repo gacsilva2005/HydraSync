@@ -22,23 +22,19 @@ export default function ForgotPasswordScreen() {
   const [email, setEmail] = useState('');
 
   const handleResetPassword = () => {
-    // 1. Remove os espaços em branco do começo e do fim (caso o usuário digite sem querer)
     const cleanEmail = email.trim();
 
-    // 2. Verifica se algum campo está vazio
     if (!cleanEmail) {
       Alert.alert('Campo Obrigatório', 'Por favor, informe seu e-mail para recuperar a senha.');
       return;
     }
 
-    // 3. Verifica o formato do e-mail usando Regex (precisa ter texto, um @, texto, um ponto, texto)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(cleanEmail)) {
       Alert.alert('E-mail Inválido', 'Insira um formato de e-mail válido.');
       return;
     }
 
-    // Simulação de envio
     Alert.alert(
       'Solicitação Enviada',
       'Se este e-mail estiver em nossa base, você receberá instruções para redefinir sua senha em instantes.',
@@ -47,7 +43,7 @@ export default function ForgotPasswordScreen() {
   };
 
   return (
-    <Screen bgImage={require('../assets/images/saocamilo.jpg')}
+    <Screen bgImage={require('../../assets/images/saocamilo.jpg')}
       backgroundColor="#4A0E17">
 
       {/* Reaproveitando o Cabeçalho */}

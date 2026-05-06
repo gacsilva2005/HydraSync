@@ -13,7 +13,7 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
     });
 
     const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement>
+        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) => {
         setFormData({
             ...formData,
@@ -70,6 +70,8 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
 
             <form className="novo-atleta-form" style={{ padding: '40px', borderRadius: '12px', border: '1px solid var(--hydro-border)', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }} onSubmit={handleSubmit}>
                 <div className="form-grid" style={{ marginBottom: '40px' }}>
+
+                    {/* Nome Completo */}
                     <div className="filtro-grupo" style={{ gridColumn: '1 / -1' }}>
                         <label style={{ fontSize: '12px', color: 'var(--hydro-action)', fontWeight: 700, letterSpacing: '0.5px' }}>NOME COMPLETO</label>
                         <div className="input-wrapper" style={{ height: '48px', backgroundColor: '#F8F9FA' }}>
@@ -85,6 +87,7 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                         </div>
                     </div>
 
+                    {/* E-mail */}
                     <div className="filtro-grupo">
                         <label style={{ fontSize: '12px', color: 'var(--hydro-action)', fontWeight: 700, letterSpacing: '0.5px' }}>E-MAIL DE CONTATO</label>
                         <div className="input-wrapper" style={{ height: '48px', backgroundColor: '#F8F9FA' }}>
@@ -100,6 +103,7 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                         </div>
                     </div>
 
+                    {/* Código da Equipe */}
                     <div className="filtro-grupo">
                         <label style={{ fontSize: '12px', color: 'var(--hydro-action)', fontWeight: 700, letterSpacing: '0.5px' }}>CÓDIGO DA EQUIPE</label>
                         <div className="input-wrapper" style={{ height: '48px', backgroundColor: '#F8F9FA' }}>
@@ -114,6 +118,7 @@ export function NovoAtleta({ onBack }: NovoAtletaProps) {
                             />
                         </div>
                     </div>
+
                 </div>
 
                 <div className="form-actions" style={{ paddingTop: '32px', borderTop: '1px solid var(--hydro-border)' }}>

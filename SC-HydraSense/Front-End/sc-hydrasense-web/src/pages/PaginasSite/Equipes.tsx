@@ -3,7 +3,7 @@ import teamLogo from '../../assets/icone_petala.png';
 
 export function Equipes() {
     const navigate = useNavigate();
-    
+
     return (
         <>
             {/* === CABEÇALHO === */}

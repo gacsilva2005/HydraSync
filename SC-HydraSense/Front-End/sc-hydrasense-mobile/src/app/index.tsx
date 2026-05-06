@@ -22,7 +22,6 @@ import { styles } from './styles';
 import { router } from 'expo-router';
 
 export default function LoginScreen() {
-  // Estados para capturar o que o usuário digita
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -30,32 +29,26 @@ export default function LoginScreen() {
   const [carregando, setCarregando] = useState(false);
 
   const handleLogin = () => {
-    // 1. Remove os espaços em branco do começo e do fim (caso o usuário digite sem querer)
     const cleanEmail = email.trim();
     const cleanPassword = password.trim();
 
-    // 2. Verifica se algum campo está vazio
     if (!cleanEmail || !cleanPassword) {
       Alert.alert('Campos Obrigatórios', 'Por favor, preencha o seu e-mail e a sua senha para acessar o portal.');
-      return; // O "return" faz a função parar aqui e não avançar
+      return;
     }
 
-    // 3. Verifica o formato do e-mail usando Regex (precisa ter texto, um @, texto, um ponto, texto)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(cleanEmail)) {
       Alert.alert('E-mail Inválido', 'Por favor, insira um formato de e-mail válido (ex: atleta@performance.com).');
       return;
     }
 
-    // 4. Se passou por todas as barreiras acima, o login é válido!
     console.log('Login validado com sucesso! Entrando com:', cleanEmail);
-
-    // Avança para o Dashboard
     router.replace('/(tabs)/dashboard');
   };
 
   return (
-    <Screen bgImage={require('../assets/images/saocamilo.jpg')}
+    <Screen bgImage={require('../../assets/images/saocamilo.jpg')}
       backgroundColor="#4A0E17">
 
       {/* === CABEÇALHO ESCURO === */}
@@ -121,14 +114,12 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
 
-
         {/* Botão de Acesso */}
         <Button
           title="ACESSAR PORTAL"
           onPress={handleLogin}
         />
 
-        {/* Divisor */}
         {/* Divisor */}
         <Divider text="OU CONECTE VIA" />
 
@@ -148,7 +139,7 @@ export default function LoginScreen() {
         <View style={styles.footerRow}>
           <Text style={styles.footerText}>Novo no HydroPerform? </Text>
           <TouchableOpacity>
-            <Text style={styles.footerLink}>Solicitar acesso ao lab</Text>
+            <Text onPress={() => router.push('./cadastro')} style={styles.footerLink}>Criar cadastro</Text>
           </TouchableOpacity>
         </View>
       </View>
