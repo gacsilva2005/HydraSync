@@ -6,8 +6,10 @@ node_modules/
 # Expo
 .expo/
 dist/
+build/
 web-build/
 expo-env.d.ts
+target/
 
 # Native
 .kotlin/
@@ -41,3 +43,5 @@ app-example
 # generated native folders
 /ios
 /android
+node_modules/
+**/node_modules/

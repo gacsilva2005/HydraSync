@@ -186,6 +186,39 @@
 }
 
 /* =========================================
+   SIDEBAR FOOTER & LOGOUT
+   ========================================= */
+.hydro-sidebar-footer {
+    margin-top: auto; 
+    padding-top: 20px;
+    border-top: 1px solid var(--hydro-border);
+}
+
+.btn-logout {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: transparent;
+    color: var(--hydro-text-muted);
+    border: 1px solid transparent;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+    background-color: #ffeaea;
+    color: var(--hydro-critical);
+    border-color: rgba(217, 4, 41, 0.3);
+}
+
+/* =========================================
    CABEÇALHO DE PÁGINAS INTERNAS
    ========================================= */
 .atletas-header {
@@ -723,6 +756,7 @@
 .equipe-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-color: var(--hydro-action);
 }
 
 .equipe-card.inativa {
@@ -765,6 +799,292 @@
     margin: 0 0 4px 0;
     text-transform: uppercase;
     font-weight: 600;
+}
+
+/* =========================================
+   TELA RELATÓRIO EQUIPE
+   ========================================= */
+.relatorio-container {
+    animation: fadeIn 0.3s ease;
+    padding-bottom: 40px;
+}
+
+.relatorio-header {
+    margin-bottom: 40px;
+}
+
+.relatorio-breadcrumb {
+    font-size: 12px;
+    color: var(--hydro-text-muted);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.relatorio-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 12px;
+}
+
+.relatorio-title {
+    margin: 0 0 8px 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 38px;
+    color: var(--hydro-text-primary);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+.relatorio-subtitle {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 38px;
+    color: var(--hydro-action);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+.relatorio-filtros {
+    background-color: #F8F9FA;
+    border: 1px solid var(--hydro-border);
+    border-radius: 8px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.relatorio-filtros-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.relatorio-filtro-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--hydro-action);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.relatorio-filtro-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.relatorio-filtro-item-label {
+    font-size: 13px;
+    color: var(--hydro-text-muted);
+    font-weight: 500;
+}
+
+.relatorio-filtro-select {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #D1D5DB;
+    padding-bottom: 4px;
+    font-size: 14px;
+    color: var(--hydro-text-primary);
+    outline: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.relatorio-filtros-right {
+    display: flex;
+    gap: 24px;
+    color: var(--hydro-text-muted);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.relatorio-filtro-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.relatorio-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    color: var(--hydro-text-primary);
+}
+
+.relatorio-painel {
+    background-color: var(--hydro-bg-card);
+    border-radius: 12px;
+    padding: 40px 40px 32px 40px;
+    border: 1px solid var(--hydro-border);
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.relatorio-chart-wrapper {
+    position: relative;
+    height: 220px;
+    margin-bottom: 32px;
+}
+
+.relatorio-chart-y-axis {
+    position: absolute;
+    left: 0;
+    font-size: 12px;
+    color: var(--hydro-text-muted);
+    font-weight: 500;
+}
+
+.relatorio-chart-y-top { top: 0; }
+.relatorio-chart-y-mid { top: 50%; transform: translateY(-50%); }
+.relatorio-chart-y-bottom { bottom: 20px; }
+
+.relatorio-chart-svg {
+    position: absolute;
+    top: 0;
+    left: 70px;
+    width: calc(100% - 70px);
+}
+
+.relatorio-chart-x-axis {
+    position: absolute;
+    bottom: -24px;
+    left: 70px;
+    width: calc(100% - 70px);
+    display: flex;
+    justify-content: space-between;
+    padding-right: 40px;
+}
+
+.relatorio-chart-x-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.relatorio-chart-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.relatorio-chart-x-label {
+    font-size: 12px;
+    color: var(--hydro-text-muted);
+    font-weight: 500;
+}
+
+.relatorio-painel-footer {
+    border-top: 1px solid var(--hydro-border);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 40px;
+}
+
+.relatorio-painel-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--hydro-text-primary);
+}
+
+.relatorio-painel-desc {
+    margin: 4px 0 0 0;
+    font-size: 13px;
+    color: var(--hydro-text-muted);
+}
+
+.relatorio-painel-valor {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--hydro-action);
+    font-family: var(--font-display);
+    line-height: 1;
+}
+
+.relatorio-painel-valor span {
+    color: var(--hydro-text-primary);
+    font-size: 20px;
+}
+
+.relatorio-painel-meta {
+    font-size: 11px;
+    color: var(--hydro-text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+.relatorio-tabela-container {
+    margin: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.relatorio-table-header th {
+    color: #6C757D;
+    font-weight: 600;
+    border-bottom: none;
+}
+
+.relatorio-table-body {
+    background-color: var(--hydro-bg-card);
+}
+
+.relatorio-td-atleta {
+    padding-left: 24px;
+}
+
+.relatorio-atleta-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #E9ECEF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--hydro-text-primary);
+}
+
+.relatorio-td-suor {
+    font-weight: 500;
+}
+
+.relatorio-td-variacao-critica {
+    color: var(--hydro-action);
+    font-weight: 600;
+}
+
+.relatorio-td-variacao-moderada {
+    color: #c9601d;
+    font-weight: 600;
+}
+
+.relatorio-td-variacao-estavel {
+    color: var(--hydro-success);
+    font-weight: 600;
+}
+
+.relatorio-td-action {
+    color: var(--hydro-text-muted);
+    padding-right: 24px;
 }
 
 .equipe-stat-item p:last-child {

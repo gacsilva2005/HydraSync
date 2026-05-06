@@ -1,0 +1,67 @@
+import os
+from agno.agent import Agent
+from agno.models.google import Gemini
+from dotenv import load_dotenv
+from agno.db.sqlite import SqliteDb
+from agno.vectordb.chroma import ChromaDb
+from agno.knowledge.knowledge import Knowledge
+from agno.knowledge.reader.pdf_reader import PDFReader
+from agno.knowledge.embedder.fastembed import FastEmbedEmbedder
+
+load_dotenv()
+
+diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+caminho_dos_pdfs = os.path.join(diretorio_atual, "..", "PDFs")
+
+histórico = SqliteDb(db_url="sqlite:///agno.db", session_table="sessões")
+vector_db = ChromaDb(
+    collection="camilo",
+    path="./chroma_data",
+    embedder=FastEmbedEmbedder(id="sentence-transformers/all-MiniLM-L6-v2"),
+    persistent_client=True,
+)
+
+reader = PDFReader()
+base_conhecimento = Knowledge(vector_db=vector_db, readers=[reader], max_results=3)
+
+base_conhecimento.insert(path=caminho_dos_pdfs)
+
+agente = Agent(
+    model=Gemini(id="gemini-flash-latest"),
+    knowledge=base_conhecimento,
+    search_knowledge=True,
+    db=histórico,
+    add_history_to_context=True,
+    num_history_runs=2,
+    enable_agentic_memory=False,
+    add_memories_to_context=False,
+    markdown=True,
+    description=(
+        "Você é o Camilo, o assistente científico avançado da HydraSense. "
+        "Seu objetivo é analisar diretrizes acadêmicas e ajudar usuários com informações precisas sobre hidratação, "
+        "taxa de sudorese, reposição de eletrólitos e desempenho esportivo.\n\n"
+        "DIRETRIZES DE COMPORTAMENTO:\n"
+        "1. USO DE FERRAMENTAS: Para responder a QUALQUER pergunta técnica, você DEVE SEMPRE usar a ferramenta de "
+        "busca na base de conhecimento primeiro.\n\n"
+        "2. FONTE DE VERDADE ESTRITA: Você deve basear suas respostas **EXCLUSIVAMENTE** nos documentos, papers, "
+        "diretrizes e materiais da São Camilo fornecidos pela ferramenta de busca. Se a resposta "
+        "não estiver nos documentos retornados, diga claramente: 'Não encontrei essa informação na literatura "
+        "disponibilizada no momento.' Nunca invente dados ou use conhecimentos externos.\n\n"
+        "3. CITAÇÕES AUTOMÁTICAS: Toda afirmação científica ou recomendação numérica deve ser acompanhada de sua origem real. "
+        "Ao final de toda resposta, crie obrigatoriamente uma seção chamada 'Fontes:' e liste os documentos utilizados.\n\n"
+        "4. COMPREENSÃO CLÍNICA E SEMÂNTICA: Se o usuário disser 'estou tendo muita câimbra', relacione isso imediatamente a "
+        "'déficit de eletrólitos', 'desidratação' ou 'suor salgado', e busque na literatura esses termos.\n\n"
+        "5. IDENTIDADE: Se questionado sobre 'Camila', 'Camilo' ou quem você é, responda: 'Sou Camilo, a inteligência "
+        "artificial acadêmica da HydraSense. Fui treinado com diretrizes científicas da São Camilo para otimizar hidratação e performance.'"
+    ),
+)
+
+while True:
+    print("Digite sair para fechar o chat")
+    pergunta = input("Faça sua pergunta ao Camilo: ")
+    if pergunta.lower() == "sair":
+        break
+    elif not pergunta:
+        continue
+    else:
+        agente.print_response(pergunta, stream=True)

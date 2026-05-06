@@ -3,9 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const menuItems = [
     { label: 'Dashboard', path: '/PageWeb' },
     { label: 'Atletas', path: '/PageWeb/atletas' },
-    { label: 'Equipes', path: '/PageWeb/equipes' },
-    { label: 'Relatórios', path: '/PageWeb/relatorios' },
-    { label: 'Configurações', path: '/PageWeb/configuracoes' }
+    { label: 'Equipes', path: '/PageWeb/equipes' }
 ];
 
 export function SideBarPageWeb() {
@@ -19,6 +17,10 @@ export function SideBarPageWeb() {
         return location.pathname.includes(path);
     };
 
+    const handleLogout = () => {
+        navigate('/');
+    };
+
     return (
         <aside className="hydro-sidebar">
             <nav>
@@ -28,13 +30,18 @@ export function SideBarPageWeb() {
                             key={item.label}
                             className={checkIsActive(item.path) ? 'active' : ''}
                             onClick={() => navigate(item.path)}
-                            style={{ cursor: 'pointer' }}
                         >
                             {item.label}
                         </li>
                     ))}
                 </ul>
             </nav>
+
+            <div className="hydro-sidebar-footer">
+                <button type="button" className="btn-logout" onClick={handleLogout}>
+                    Sair da Conta
+                </button>
+            </div>
         </aside>
     );
 }

@@ -1,21 +1,22 @@
 // src/app/(tabs)/_layout.tsx
 import { Tabs } from 'expo-router';
-import { FontAwesome5, Feather } from '@expo/vector-icons';
+import { FontAwesome5, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { theme } from '../../global/themas';
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false, // Esconde aquele cabeçalho feio padrão no topo
-        tabBarActiveTintColor: theme.colors.primary, // Vermelho quando clicado
-        tabBarInactiveTintColor: theme.colors.textLight, // Cinza quando inativo
+        headerShown: false,
+        tabBarActiveTintColor: theme.colors.primary,
+        tabBarInactiveTintColor: theme.colors.textLight,
         tabBarStyle: {
           backgroundColor: theme.colors.surface,
           borderTopWidth: 1,
           borderTopColor: theme.colors.border,
-          height: 60,
-          paddingBottom: 8,
+          height: 100, 
+          paddingBottom: 30, // Sobe os ícones para fugir dos botões do sistema
+          paddingTop: 10,
         },
         tabBarLabelStyle: {
           fontFamily: theme.fonts.bodyBold,
@@ -23,34 +24,42 @@ export default function TabLayout() {
         }
       }}
     >
+      {/* 1º - Dashboard na Esquerda */}
       <Tabs.Screen
-        name="dashboard"
+        name="dashboard/index" 
         options={{
           title: 'DASHBOARD',
           tabBarIcon: ({ color }) => <Feather name="grid" size={24} color={color} />,
         }}
       />
+
+      {/* 2º - Hydration */}
       <Tabs.Screen
-        name="hydration"
+        name="hydration/index"
         options={{
-          title: 'HYDRATION',
+          title: 'HYDRATAÇÃO',
           tabBarIcon: ({ color }) => <FontAwesome5 name="tint" size={20} color={color} />,
         }}
       />
+
+      {/* 3º - Performance */}
       <Tabs.Screen
-        name="performance"
+        name="performance/index"
         options={{
           title: 'PERFORMANCE',
-          tabBarIcon: ({ color }) => <FontAwesome5 name="bolt" size={20} color={color} />,
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="lightning-bolt-outline" size={30} color={color} />,
         }}
       />
+
+      {/* 4º - Profile na Direita */}
       <Tabs.Screen
-        name="profile"
+        name="profile/index"
         options={{
-          title: 'PROFILE',
+          title: 'PERFIL',
           tabBarIcon: ({ color }) => <Feather name="user" size={24} color={color} />,
         }}
       />
+      
     </Tabs>
   );
 }
